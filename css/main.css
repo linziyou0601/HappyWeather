@@ -88,7 +88,6 @@ section{
 }
     /*PayType表格*/
     #PayType{
-        width: 70vw;
         border: thin rgba(245,245,245,0.3) solid;
         border-spacing: 0;
     }
@@ -117,11 +116,3 @@ footer{
     text-align: center;
 }
     .ftitle{ font: 300 18px/30px 'Open Sans'; }
-
-
-@media only screen and (max-width: 768px)  {
-    img{
-        width: 90vw;
-        height: auto;
-    }
-}

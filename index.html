@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<title>MyPay - B10723007</title>
 	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery.rwdImageMaps.js"></script><!--嵌入rwdImageMaps的JQ套件，讓影像地圖RWD縮放時不跑位-->
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -27,6 +28,7 @@
 				<a href="#s2"><span id="getStart">Get Start</span></a>
 			</div>
 		</section>
+
 		<section id="s2" class="flex">
 			<div class="flex flex_COL">
 				<h1><ruby>概述行動支付<rt>Overview Mobile Payment</rt></ruby></h1>
@@ -34,38 +36,52 @@
 				<img src="images/Type_of_Payment.png" height="300"/>
 			</div>
 		</section>
+
 		<section id="s3" class="flex">
 			<div class="flex flex_COL">
 				<h1><ruby>國際三大Pay<rt>International 3 Major Pay</rt></ruby></h1>
-				<table id="PayType">
+				<div class="flex">
+					<table id="PayType" width="53%">
+						<tr>
+							<th scope="col" width="50"></th>
+							<th scope="col" width="200">Apple Pay</th>
+							<th scope="col" width="200">Samsung Pay</th>
+							<th scope="col" width="200">Google Pay</th>
+						</tr>
+						<tr><td scope="row">支援卡別</td><td>VISA、Master、JCB<br/>信用卡、簽帳金融卡</td><td>VISA、Master<br/>信用卡、簽帳金融卡</td><td>VISA、Master<br/>信用卡、簽帳金融卡</td></tr>
+						<tr><td scope="row">支援功能</td><td>NFC</td><td>NFC、MST磁條</td><td>NFC</td></tr>
+					</table>
+					<img src="images/Three_Major_Pay.png" usemap="#image-map" style="width: 25vw;"/>
+					<map name="image-map">
+						<area title="GooglePay" href="https://pay.google.com/intl/zh_tw/about/" shape="circle" coords="273,316,185" target="_blank" alt="GooglePay">
+						<area title="ApplePay" href="https://www.apple.com/tw/apple-pay/" shape="circle" coords="729,316,185" target="_blank" alt="ApplePay">
+						<area title="SamsungPay" href="https://www.samsung.com/tw/samsungpay/" shape="circle" coords="501,711,185" target="_blank" alt="SamsungPay">
+					</map>
+				</div>
+			</div>
+		</section>
+
+		<section id="s3_1" class="flex">
+			<div class="flex flex_COL">
+				<h1><ruby>其餘類型<rt>The other types</rt></ruby></h1>
+				<table id="PayType" width="70%">
 					<tr>
-						<th scope="col" width="50"></th>
-						<th scope="col" width="200">Apple Pay</th>
-						<th scope="col" width="200">Samsung Pay</th>
-						<th scope="col" width="200">Google Pay</th>
+						<th scope="col" width="100"></th>
+						<th scope="col" width="300">第三方支付</th>
+						<th scope="col" width="300">電子支付</th>
+						<th scope="col" width="300">電子票證</th>
 					</tr>
-					<tr><td scope="row">支援卡別</td><td>VISA、Master、JCB<br/>信用卡、簽帳金融卡</td><td>VISA、Master<br/>信用卡、簽帳金融卡</td><td>VISA、Master<br/>信用卡、簽帳金融卡</td></tr>
-					<tr><td scope="row">支援功能</td><td>NFC</td><td>NFC、MST磁條</td><td>NFC</td></tr>
+					<tr><td scope="row">主要功能</td><td>1. 只能從事代收代付。</td><td>1. 可儲值、轉帳、代收代付。<br/>2. 儲值金額上限為 NT$ 5萬。</td><td>1. 可儲值。<br/>2. 儲值金額上限為 NT$ 1萬。</td></tr>
+					<tr><td scope="row">市場代表</td><td>Line Pay、Gomaji Pay、支付連(PC home)、Yahoo奇摩輕鬆付等6300餘家。</td><td>Line Pay 一卡通帳戶、街口支付、橘子支付、國際連、歐付寶、智付寶及銀行等。</td><td>悠遊卡、一卡通、愛金卡(iCash)、HappyCash有錢卡等。</td></tr>
 				</table>
 			</div>
 		</section>
-		<section id="s3_1" class="flex">
-				<div class="flex flex_COL">
-					<h1><ruby>其餘類型<rt>The other types</rt></ruby></h1>
-					<table id="PayType">
-						<tr>
-							<th scope="col" width="100"></th>
-							<th scope="col" width="300">第三方支付</th>
-							<th scope="col" width="300">電子支付</th>
-							<th scope="col" width="300">電子票證</th>
-						</tr>
-						<tr><td scope="row">主要功能</td><td>1. 只能從事代收代付。</td><td>1. 可儲值、轉帳、代收代付。<br/>2. 儲值金額上限為 NT$ 5萬。</td><td>1. 可儲值。<br/>2. 儲值金額上限為 NT$ 1萬。</td></tr>
-						<tr><td scope="row">市場代表</td><td>Line Pay、Gomaji Pay、支付連(PC home)、Yahoo奇摩輕鬆付等6300餘家。</td><td>Line Pay 一卡通帳戶、街口支付、橘子支付、國際連、歐付寶、智付寶及銀行等。</td><td>悠遊卡、一卡通、愛金卡(iCash)、HappyCash有錢卡等。</td></tr>
-					</table>
-				</div>
-			</section>
+		
 		<section id="s4" class="flex">
-			<h1>Line Pay 簡介</h1>
+			<div class="flex flex_COL">
+				<h1>Line Pay 簡介</h1>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Line_pay_logo.svg" width="50%"/>
+			</div>
 		</section>
 	</content>
 
@@ -88,6 +104,10 @@
 				});
 			}
 			});
+		});
+		//把影像地圖套用rwdImageMaps的funtcion
+		$(document).ready(function(e) {
+			$('img[usemap]').rwdImageMaps();
 		});
 	</script>
 </body>
