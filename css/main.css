@@ -1,0 +1,128 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+
+body{
+    margin: 0;
+	font-family: 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+}
+a, a:hover{ text-decoration: none; }
+
+/*--------------------
+flex水平及垂直版面設定*/
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flex_COL{ flex-direction: column; }
+
+
+/*--------------------
+header區塊*/
+header{
+    background-color: #222;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+}
+    /*navbar*/
+    .brand{ font: 600 20px/50px 'Open Sans'; }
+    nav{ font: 400 15px/50px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體"; }
+    nav a{ color: #FFF; margin: auto 1.5vw; }
+    nav a:hover{ color: #BBB; }
+
+
+/*--------------------
+section區塊*/
+section{
+    height: calc(100vh - 50px);
+    padding-top: 50px;
+    color: #888;
+    text-align: center;
+}
+    /*標題及內文*/
+    section h1{
+        margin: 30px auto;
+        font: 300 50px/50px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+    }
+    .innerText{ 
+        margin: auto 10vw;
+        font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        text-align: justify;
+    }
+
+#home{
+    background: url("../images/Home_Background.jpg") no-repeat center center;
+    background-size: cover;
+    color: #fff;
+}
+    /*首頁Title*/
+    #Title{ margin: 60px; }
+    .mainTitle{ font: 300 43px/50px 'Open Sans'; }
+    .subTitle{ font: 600 60px/60px 'Open Sans'; }
+    .thrTitle{ font: 400 25px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體"; }
+    /*getStart按鈕*/
+    #getStart{
+        background-color: rgba(241, 104, 118, 0.7);
+        border-radius: 8px;
+        padding: 8px 45px;
+        color: #FFF;
+        font: 300 20px/40px 'Open Sans';
+    }
+    #getStart:hover{ background-color: rgba(241, 104, 118, 1); }
+  
+#s2{
+    background-color: rgba(228, 228, 228, 0.4);
+}
+#s3{
+    background: url("../images/s3_Background.jpg") no-repeat center center;
+    background-size: cover;
+    color: #FFF;
+}
+#s3_1{
+    background: url("../images/s3_1_Background.jpg") no-repeat center center;
+    background-size: cover;
+    color: #FFF;
+}
+    /*PayType表格*/
+    #PayType{
+        width: 80vw;
+        border: thin rgba(245,245,245,0.3) solid;
+        border-spacing: 0;
+    }
+    #PayType th{
+        background-color:rgba(245,245,245,0.3);
+        padding: 15px;
+        font: 400 20px/20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+    }
+    #PayType td{
+        border:thin rgba(245,245,245,0.3) solid;
+        padding: 15px;
+        font: 300 15px/20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+    }
+#s4{
+    background-color: rgba(228, 228, 228, 0.4);
+}
+
+/*--------------------
+footer區塊*/
+footer{
+    height: calc(100vh - 50px);
+    padding-top: 50px;
+    background-color: #1e1f26;
+    text-align: center;
+}
+    .ftitle{
+        color: #FFF;
+        font: 300 20px 'Open Sans';
+    }
+
+
+@media only screen and (max-width: 768px)  {
+    img{
+        width: 90vw;
+        height: auto;
+    }
+}
