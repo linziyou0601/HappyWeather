@@ -88,23 +88,24 @@ section{
 }
     /*PayType表格*/
     #PayType{
-        width: 80vw;
+        width: 70vw;
         border: thin rgba(245,245,245,0.3) solid;
         border-spacing: 0;
     }
     #PayType th{
         background-color:rgba(245,245,245,0.3);
         padding: 15px;
-        font: 400 20px/20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        font: 400 24px/28px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
     #PayType td{
         border:thin rgba(245,245,245,0.3) solid;
         padding: 15px;
-        font: 300 15px/20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
 #s4{
     background-color: rgba(228, 228, 228, 0.4);
 }
+
 
 /*--------------------
 footer區塊*/
@@ -112,12 +113,10 @@ footer{
     height: calc(100vh - 50px);
     padding-top: 50px;
     background-color: #1e1f26;
+    color: #FFF;
     text-align: center;
 }
-    .ftitle{
-        color: #FFF;
-        font: 300 20px 'Open Sans';
-    }
+    .ftitle{ font: 300 18px/30px 'Open Sans'; }
 
 
 @media only screen and (max-width: 768px)  {
