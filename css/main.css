@@ -43,9 +43,9 @@ section{
     text-align: center;
 }
     /*標題及內文*/
-    section h1{
+    h1{
         margin: 30px auto;
-        font: 300 50px/50px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        font: 300 50px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
     .innerText{ 
         margin: auto 10vw;
@@ -104,7 +104,19 @@ section{
 #s4{
     background-color: rgba(228, 228, 228, 0.4);
 }
+#final{
 
+}
+    /*表單*/
+    label{
+        font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        vertical-align:middle;
+    }
+    input{
+        height: 25px;
+        border-radius: 5px;
+        border: #888 solid 1px;
+    }
 
 /*--------------------
 footer區塊*/
