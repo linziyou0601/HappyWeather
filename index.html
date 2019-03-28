@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>MyPay - B10723007</title>
+	<title>PayClass - B10723007</title>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery.rwdImageMaps.js"></script><!--嵌入rwdImageMaps的JQ套件，讓影像地圖RWD縮放時不跑位-->
 	<link href="css/main.css" rel="stylesheet" type="text/css">
@@ -10,7 +10,7 @@
 <body>
 	<header class="flex">
 		<nav>
-			<a class="brand" href="#home">MyPay</a>
+			<a class="brand" href="#home">PayClass</a>
 			<a href="#s2">概述</a>
 			<a href="#s3">種類</a>
 			<a href="#s4">Line Pay</a>
@@ -86,20 +86,32 @@
 		<section id="s4" class="flex">
 			<div class="flex flex_COL">
 				<h1>Line Pay 簡介</h1>
-				<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Line_pay_logo.svg" width="50%"/>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Line_pay_logo.svg" width="15%" height="15%"/>
 			</div>
 		</section>
 
 		<section id="final" class="flex">
 			<div class="flex flex_COL">
 				<h1>意見反饋</h1><br/>
-				<form>
-					<label for="userName">姓名： </label><input type="text" id="userName"/><br/>
-					<label >性別： </label>
-					<input type="radio" name="userGender" value="male" id="male" /><label for="male">男性</label>
-					<input type="radio" name="userGender" value="female" id="female" /><label for="female">女性</label>
-					<input type="radio" name="userGender" value="private" id="private" /><label for="private">保密</label><br/>
-					<label for="userMail">信箱： </label><input type="email" id="usermail" placeholder="A123@abc.tw" size="40" pattern="^[a-z0-9._%+-]@*.*"/><br/>
+				<form action="javascript:alert('感謝您的回饋！\n（不會真的送出）');">
+					<fieldset name="body">
+						<label for="userName">姓名：</label><input type="text" name="subject" id="userName" placeholder="王大明" size="10" required/>
+						<label>　性別：</label>
+						<input type="radio" name="userGender" value="male" id="male"/><label for="male">男</label>
+						<input type="radio" name="userGender" value="female" id="female" /><label for="female">女</label>
+						<input type="radio" name="userGender" value="private" id="private" checked/><label for="private">不公開</label><br/>
+						<label for="userMail">信箱：</label><input type="email" id="usermail" placeholder="A123@abc.tw" size="40" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z0-9.-]+" required/><br/>
+						<br/><hr size="1px" color="#CCC">
+						<label >本網站是否讓您更認識行動支付？</label>
+						<input type="radio" name="question1" value="yes" id="yes"/><label for="yes">有</label>
+						<input type="radio" name="question1" value="normal" id="normal" checked/><label for="normal">普通</label>
+						<input type="radio" name="question1" value="no" id="no" /><label for="no">沒有</label><br/>
+						<label for="anyfb">建議：</label><textarea name="anyfb" id="anyfb" cols="40" rows="3"></textarea>
+					</fieldset>
+					<div style="text-align: center;">
+						<input type="reset" value="清除">
+						<input type="submit" value="送出">
+					</div>
 				</form>
 			</div>
 		</section>
