@@ -65,7 +65,8 @@
 		<section id="s3_1" class="flex">
 			<div class="flex flex_COL">
 				<h1><ruby>其餘類型<rt>The other types</rt></ruby></h1>
-				<table id="PayType" width="70%">
+				<p class="innerText">　　廣義而言，行動支付是指「利用手機進行付款」這件事；但狹義來說，行動支付只是把手機作為信用卡的載具，也就是說，手機就是信用卡。店家如果要透過手機行動支付收到你的付款，就必須具備感應式刷卡機。目前非感應式的行動支付方式，也有下方幾種型態。<br/>　</p>
+				<table id="PayType" width="80%" align="center">
 					<tr>
 						<th scope="col" width="100"></th>
 						<th scope="col" width="300">第三方支付</th>
@@ -75,6 +76,10 @@
 					<tr><td scope="row">主要功能</td><td>1. 只能從事代收代付。</td><td>1. 可儲值、轉帳、代收代付。<br/>2. 儲值金額上限為 NT$ 5萬。</td><td>1. 可儲值。<br/>2. 儲值金額上限為 NT$ 1萬。</td></tr>
 					<tr><td scope="row">市場代表</td><td>Line Pay、Gomaji Pay、支付連(PC home)、Yahoo奇摩輕鬆付等6300餘家。</td><td>Line Pay 一卡通帳戶、街口支付、橘子支付、國際連、歐付寶、智付寶及銀行等。</td><td>悠遊卡、一卡通、愛金卡(iCash)、HappyCash有錢卡等。</td></tr>
 				</table>
+				<p class="reference">
+					<a href="https://dahetalk.com/2018/08/19/【圖解】台灣行動支付大比拼%EF%BC%9Aline-pay、街口支付、apple-pay/" target="_blank">　參考文獻[1]</a>
+					<a href="https://agirls.aotter.net/post/54383" target="_blank">　參考文獻[2]</a>
+				</p>
 			</div>
 		</section>
 		
@@ -87,9 +92,14 @@
 
 		<section id="final" class="flex">
 			<div class="flex flex_COL">
-				<h1>意見反饋</h1>
+				<h1>意見反饋</h1><br/>
 				<form>
-					<label for="userName">姓名： </label><input type="text" id="userName"/>
+					<label for="userName">姓名： </label><input type="text" id="userName"/><br/>
+					<label >性別： </label>
+					<input type="radio" name="userGender" value="male" id="male" /><label for="male">男性</label>
+					<input type="radio" name="userGender" value="female" id="female" /><label for="female">女性</label>
+					<input type="radio" name="userGender" value="private" id="private" /><label for="private">保密</label><br/>
+					<label for="userMail">信箱： </label><input type="email" id="usermail" placeholder="A123@abc.tw" size="40" pattern="^[a-z0-9._%+-]@*.*"/><br/>
 				</form>
 			</div>
 		</section>

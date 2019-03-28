@@ -7,6 +7,8 @@ body{
 	font-family: 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
 }
 a, a:hover{ text-decoration: none; }
+.reference { width: 80%; text-align: right; }
+.reference a{ color: #fff; }
 
 /*--------------------
 flex水平及垂直版面設定*/
@@ -40,7 +42,6 @@ section{
     height: calc(100vh - 50px);
     padding-top: 50px;
     color: #888;
-    text-align: center;
 }
     /*標題及內文*/
     h1{
@@ -107,16 +108,32 @@ section{
 #final{
 
 }
-    /*表單*/
+    /*表單樣式*/
     label{
+        margin: 10px auto;
         font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
-        vertical-align:middle;
+        vertical-align: middle;
     }
     input{
-        height: 25px;
-        border-radius: 5px;
+        height: 28px;
+        border-radius: 4px;
         border: #888 solid 1px;
+        padding: 5px;
+        font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        vertical-align: middle;
     }
+    input[type="radio"]{ display: none; }
+    input[type="radio"] + label{
+        display: inline-block;
+        background-color: #ccc;
+        border-radius: 4px;
+        padding: 5px 10px;
+    }
+    input[type="radio"]:checked + label{
+        background-color: #555;
+	    color: #fff;
+    }
+
 
 /*--------------------
 footer區塊*/
