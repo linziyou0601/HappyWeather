@@ -111,14 +111,13 @@ section, footer{
 #s4_1{ background-color: #d54e8d; }
     /*getContinue按鈕*/
     #getContinue{
-        width: 40px;
-        height: 40px;
-        background-color: #777;
-        border-radius: 50%;
+        background-color: rgba(112, 112, 112, 0.7);
+        border-radius: 8px;
         padding: 5px 10px;
         color: #FFF;
+        font: 300 18px/18px 'Open Sans';
     }
-    #getContinue:hover{ background-color: #AAA; }
+    #getContinue:hover{ background-color: rgba(112, 112, 112, 1); }
 
 /*--表單樣式--------------------------------------------------*/ 
 fieldset{
