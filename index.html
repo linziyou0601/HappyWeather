@@ -1,19 +1,21 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="utf-8">
-	<title>PayClass - B10723007</title>
-	<script src="js/jquery-3.3.1.min.js"></script>
+	<title>PayClass 我的行動支付小教室</title>
+	<script src="js/jquery-3.3.1.min.js"></script><!--嵌入基本的JQuery套件-->
 	<script src="js/jquery.rwdImageMaps.js"></script><!--嵌入rwdImageMaps的JQ套件，讓影像地圖RWD縮放時不跑位-->
-	<link href="css/main.css" rel="stylesheet" type="text/css">
+	<link href="css/main.css" rel="stylesheet" type="text/css"><!--主css樣式表-->
 </head>
+
 <body>
 	<header class="flex">
 		<nav>
 			<a class="brand" href="#home">PayClass</a>
 			<a href="#s2">概述</a>
 			<a href="#s3">種類</a>
-			<a href="#s4">主流平台</a>
+			<a href="#s4">主流支付</a>
 			<a href="#final">反饋</a>
 		</nav>
 	</header>
@@ -25,7 +27,7 @@
 					<span class="mainTitle">Some Knowledge About</span><br/>
 					<span class="subTitle">"Mobile Payment"</span><br/>
 				</div>
-				<span class="thrTitle">關 於 行 動 支 付 的 那 些 事</span>
+				<span class="thrTitle">我 的 行 動 支 付 小 教 室</span>
 				<a href="#s2"><span id="getStart">Get Start</span></a>
 			</div>
 		</section>
@@ -59,6 +61,7 @@
 						<area title="SamsungPay" href="https://www.samsung.com/tw/samsungpay/" shape="circle" coords="501,711,185" target="_blank" alt="SamsungPay">
 					</map>
 				</div>
+				<a href="#s3_1"><span id="getContinue">▼</span></a>
 			</div>
 		</section>
 
@@ -66,7 +69,7 @@
 			<div class="flex flex_COL">
 				<h1><ruby>其餘類型<rt>The other types</rt></ruby></h1>
 				<p class="innerText">　　廣義而言，行動支付是指「利用手機進行付款」這件事；但狹義來說，行動支付只是把手機作為信用卡的載具，也就是說，手機就是信用卡。店家如果要透過手機行動支付收到你的付款，就必須具備感應式刷卡機。目前非感應式的行動支付方式，也有下方幾種型態。<br/>　</p>
-				<table id="PayType" width="80%" align="center">
+				<table id="PayType" width="80%">
 					<tr>
 						<th scope="col" width="100"></th>
 						<th scope="col" width="300">第三方支付</th>
@@ -85,17 +88,25 @@
 		
 		<section id="s4" class="flex">
 			<div class="flex flex_COL">
-				<h1>主流平台</h1>
+				<h1>主流支付工具</h1>
 				<div class="flex">
 					<div class="flex flex_COL vsPay LINE">
-						<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Line_pay_logo.svg" height="60px"/><br/>
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/n-hy9MswmcA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<a href="https://www.i-pass.com.tw/IPS/Event/LINEPay-iPASS/" target="_blank"><img src="images/LINEPAY.svg" height="60px"/></a><br/>
+						<video style="width: 35vw;" src="videos/LINEPAY.mp4" type="video/mp4" controls></video>
 					</div>
 					<div class="flex flex_COL vsPay JKO">
-						<img src="images/JKOPAY.png" height="60px"/><br/>
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/n-hy9MswmcA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<a href="https://www.jkos.com/" target="_blank"><img src="images/JKOPAY.png" height="60px"/></a><br/>
+						<video style="width: 35vw;" src="videos/JKOPAY.mp4" type="video/mp4" controls></video>
 					</div>
 				</div>
+				<br/><a href="#s4_1"><span id="getContinue">▼</span></a>
+			</div>
+		</section>
+
+		<section id="s4_1" class="flex">
+			<div class="flex flex_COL">
+				<a href="https://www.taiwanpay.com.tw/" target="_blank"><img src="images/TWPAY.png" height="100px"/></a><br/>
+				<iframe style="width: 50vw; height: 28.125vw;" src="https://www.youtube-nocookie.com/embed/XeGrRbcHgME?controls=1" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</section>
 
@@ -110,7 +121,7 @@
 						<input type="radio" name="userGender" value="female" id="female" /><label for="female">女</label>
 						<input type="radio" name="userGender" value="private" id="private" checked/><label for="private">不公開</label><br/>
 						<label for="userMail">信箱：</label><input type="email" id="usermail" placeholder="A123@abc.tw" size="40" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z0-9.-]+" required/><br/>
-						<br/><hr size="1px" color="#CCC">
+						<br/><hr style="border: thin dotted #CCC;">
 						<label >本網站是否讓您更認識行動支付？</label>
 						<input type="radio" name="question1" value="yes" id="yes"/><label for="yes">有</label>
 						<input type="radio" name="question1" value="normal" id="normal" checked/><label for="normal">普通</label>
@@ -128,28 +139,24 @@
 
 	<footer class="flex">
 		<div class="flex flex_COL">
-			<h1>關於我</h1>
-			<span class="ftitle">Mobile Payment Introduction Web<br/>Linziyou Copyright 2019 &copy; All Rights Reserved.</span>
+			<h1>About</h1>
+			<div class="flex aboutMe">
+				<img src="images/editor.jpg" style="width: 50px; border-radius: 50%;"/>
+				<span style="font-size: 18px;">　B10723007　林子佑</span>
+			</div>
+			<span class="ftitle">PayClass Web Copyright 2019 &copy; All Rights Reserved.<br/>本網頁建議使用 chrome, Firefox, Edge, 或safari 瀏覽器瀏覽。</span>
 		</div>
 	</footer>
 	
 	<script>
-		$(document).ready(function(){
-			$("a").on('click', function(event) {
-			// 在覆蓋預設行為之前，確保this.hash具有值
-			if (this.hash !== "") {
-			event.preventDefault();// 防止預設錨點擊行為
-				var hash = this.hash;// 存儲hash
-				//使用jQuery的animate（）加上平滑滾動，數字（800）代表滾動到指定區域所需的毫秒數
-				$('html, body').animate({
-					scrollTop: $(hash).offset().top
-					}, 800, function(){
-					window.location.hash = hash;// 滾動完成後，將hash (#)增加至URL（預設點擊行為）
-				});
-			}
-			});
+		//超連結切換頁面時會用滑的，而不是直接跳過去
+		$("a").on('click', function() {
+			var hash = this.hash;// 存超連結hash值
+			//使用jQuery的animate()加平滑滾動，數字800代表滾動到指定區域(hash)所需的毫秒數
+			$('html, body').animate({ scrollTop: $(hash).offset().top }, 800);
 		});
-		//把影像地圖套用rwdImageMaps的funtcion
+
+		//把影像地圖套用rwdImageMaps的funtcion避免瀏覽器縮放導致影像地圖跑位
 		$(document).ready(function(e) {
 			$('img[usemap]').rwdImageMaps();
 		});

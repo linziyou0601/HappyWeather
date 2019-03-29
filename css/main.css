@@ -1,4 +1,5 @@
 @charset "utf-8";
+/*導入Google線上字型*/
 @import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
@@ -44,7 +45,7 @@ section, footer{
 }
     /*標題及內文*/
     h1{
-        margin: 30px auto;
+        margin: 20px auto;
         font: 300 50px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
     .innerText{ 
@@ -102,10 +103,21 @@ section, footer{
         font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
 
-#s4{ background-color: rgba(228, 228, 228, 0.4); }
+#s4{ background-color: #fff8d0; color: #555;}
     .vsPay{ margin: 20px; padding: 20px; border-radius: 15px;}
     .LINE{ background-color: #00C43E; }
     .JKO{ background-color: #E6090E; }
+#s4_1{ background-color: #d54e8d; }
+    /*getContinue按鈕*/
+    #getContinue{
+        width: 40px;
+        height: 40px;
+        background-color: #777;
+        border-radius: 50%;
+        padding: 5px 10px;
+        color: #FFF;
+    }
+    #getContinue:hover{ background-color: #AAA; }
 
 #final{}
     /*表單樣式*/
@@ -128,11 +140,7 @@ section, footer{
         font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
         vertical-align: middle;
     }
-    textarea{
-        height: auto;
-        resize : none;
-        vertical-align: middle;
-    }
+    textarea{ height: auto; resize : none; }
     input[type="radio"]{ display: none; }
     input[type="radio"] + label{
         display: inline-block;
@@ -141,15 +149,8 @@ section, footer{
         margin-right: 5px;
         padding: 5px 10px;
     }
-    input[type="radio"]:checked + label{
-        background-color: #555;
-	    color: #fff;
-    }
-    input[type="submit"], input[type="reset"]{
-        height: auto;
-        width: 30%;
-        margin: 30px;
-    }
+    input[type="radio"]:checked + label{ background-color: #555; color: #fff; }
+    input[type="submit"], input[type="reset"]{ width: 30%; height: auto; margin: 30px; }
     input[type="submit"]{ background-color: #4587F0; color: #FFF; }
     input[type="submit"]:hover{ background-color: #68a9e3; }
     input[type="reset"]{ color: #555; }
@@ -159,3 +160,9 @@ section, footer{
 /*footer其餘樣式*/
 footer{ background-color: #1e1f26; color: #FFF; }
     .ftitle{ font: 300 18px/30px 'Open Sans'; }
+    .aboutMe{
+        margin: 10px auto 40px auto;
+        padding: 20px 30px;
+        border: thin solid #CCC;
+        border-radius: 10px;
+    }
