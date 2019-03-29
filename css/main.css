@@ -103,6 +103,9 @@ section, footer{
     }
 
 #s4{ background-color: rgba(228, 228, 228, 0.4); }
+    .vsPay{ margin: 20px; padding: 20px; border-radius: 15px;}
+    .LINE{ background-color: #00C43E; }
+    .JKO{ background-color: #E6090E; }
 
 #final{}
     /*表單樣式*/
