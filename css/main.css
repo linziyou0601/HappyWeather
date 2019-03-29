@@ -158,7 +158,7 @@ input[type="reset"]:hover{ background-color: #EEE; }
 
 /*--footer其餘樣式--------------------------------------------------*/ 
 footer{ background-color: #1e1f26; color: #FFF; }
-    .ftitle{ font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體"; }
+    .ftitle{ font: 300 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體"; letter-spacing: 0.5px; }
     .aboutMe{
         margin: 10px auto 40px auto;
         padding: 20px 30px;
