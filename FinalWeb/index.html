@@ -59,6 +59,40 @@
 			});
 			EditTd($('#City').val("臺北市").val());
 		});
+
+
+		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
+			Data["records"]["location"].map(function(getCity){
+				//宣告暫存陣列
+				var  Time = [], Wx = [], PoP = [], T = [];
+				//建立下拉選單
+				$('#City').append('<option>' + getCity.locationName + '</option>');
+				//建立時間、現象、降雨率、溫度陣列
+				for(var i =0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
+					//暫存時間、現象、降雨率、溫度至陣列
+					var _Time = getCity.weatherElement[0].time[i];
+					var _Wx = getCity.weatherElement[0].time[i].parameter.parameterName;
+					var _PoP = getCity.weatherElement[1].time[i].parameter.parameterName;
+					var _MinT = getCity.weatherElement[2].time[i].parameter.parameterName;
+					var _MaxT = getCity.weatherElement[4].time[i].parameter.parameterName;
+					Time[i] = _Time.startTime.substring(5,16) + ' 起<br/>' + _Time.endTime.substring(5,16) + ' 止';
+					Wx[i] = _Wx;
+					PoP[i] = '降雨機率 ' + _PoP + '%';
+					T[i] = _MinT + ' ~ ' + _MaxT + ' 度';
+				}
+				//縣市名、時間、現象、降雨率、溫度存入物件
+				var cityObj = {
+					"City" : getCity.locationName,
+					"Time" : Time,
+					"Wx" : Wx,
+					"PoP" : PoP,
+					"T" : T
+				};
+				//縣市物件存入天氣陣列
+				weather[getCity.locationName] = cityObj;
+			});
+			EditTd($('#City').val("臺北市").val());
+		});
 		
 		//更改Table的TD
 		var EditTd = function (cityName){
