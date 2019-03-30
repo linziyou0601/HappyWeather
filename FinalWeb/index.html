@@ -9,30 +9,51 @@
 </head>
 
 <body>
-	<div>
-		<table id="C">
-			<tr>
-				<th width="150">縣市</th>
-				<th colspan="24">未來24小時天氣現象預報</th>
-			</tr>
-		</table>
+	<div id="home" class="flex">
+		<div class="flex flex_COL">
+			<table id="C">
+				<tr>
+					<th width="150">縣市</th>
+					<th colspan="24">
+						<select id="City"></select><br/>
+					</th>
+				</tr>
+				<tr id="first"></tr>
+				<tr id="second"></tr>
+			</table>
+		</div>
 	</div>
 	
 	<script>
-
 		var CWB;
+		var weather = {};
 		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
 			CWB = Data["records"]["locations"][0]["location"];
 			CWB.map(function(getCity){
-				var locat = '<td rowspan="2" class="cityName">' + getCity.locationName + '</td>';
-				var time, descript;
+				var locationName = new Object, time = new Array(8), value = new Array(8); 
+				$('#City').append('<option value="' + getCity.geocode + '">' + getCity.locationName + '</option>');
+				
+				locationName.City = getCity.locationName;
 				for(var i =0; i<8; i++){
-					desc = getCity.weatherElement[1].time[i];
-					time += '<td>' + desc.startTime.substring(11,13) + ' - ' + desc.endTime.substring(11,13) + '時</td>';
-					descript += '<td>' + getCity.weatherElement[1].time[i].elementValue[0].value + '</td>';
+					var nowCity = getCity.weatherElement[1].time[i];
+					time[i] = nowCity.startTime.substring(11,13) + ' - ' + nowCity.endTime.substring(11,13) + '時';
+					value[i] = nowCity.elementValue[0].value;
 				}
-				$('#C').append('<tr>' + locat + time + '</tr><tr>' + descript + '</tr>');
+				locationName.Time = time;
+				locationName.Value = value;
+				weather[getCity.geocode] = locationName;
 			});
+		});
+		
+		$('#City').on('change', function() {
+			var apCity, apTime, apValue;
+			apCity = '<td rowspan="2">' + weather[this.value]["City"] + '</td>';
+			for(var i =0; i<8; i++){
+				apTime += '<td>' + weather[this.value]["Time"][i] + '</td>'
+				apValue += '<td>' + weather[this.value]["Value"][i] + '</td>'
+			}
+			$('#first').html( apCity + apTime );
+			$('#second').html( apValue );
 		});
 	</script>
 </body>

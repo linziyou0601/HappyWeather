@@ -16,14 +16,21 @@ a, a:hover{ text-decoration: none; }
 .flex_COL{ flex-direction: column; }
 
 /*--天氣表格樣式--------------------------------------------------*/ 
+#home{
+    min-height: 100vh;
+    padding: 10px;
+    background: url('../images/bg_home.jpg') no-repeat center center;
+    background-size: cover;
+    color: #FFF;
+}
+
 #C{
-    margin: 10px auto;
+    margin: 0 auto;
     border-collapse: collapse;
     text-align: center;
 }
 #C th{
-    background-color:#888;
-    color: #FFF;
+    background-color:rgba(245,245,245,0.7);
     padding: 10px;
     font: 400 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
 }
@@ -31,8 +38,4 @@ a, a:hover{ text-decoration: none; }
     padding: 8px;
     font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
 }
-#C th, td{border:thin #555 solid;}
-#C tr:nth-child(even) {background: #FFF9BE;}
-#C tr:nth-child(odd) {background: #FFF;}
-
-.cityName{background-color:#F8F8F8;}
+#C td{border:thin rgba(245,245,245,0.7) solid;}
