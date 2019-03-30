@@ -17,8 +17,6 @@
 						<select id="City"></select><br/>
 					</th>
 				</tr>
-				<tr id="first"><td rowspan="2">　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td></tr>
-				<tr id="second"><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td><td>　</td></tr>
 			</table>
 		</div>
 	</div>
@@ -45,8 +43,9 @@
 				locationName.Time = time;
 				locationName.Value = value;
 				weather[getCity.geocode] = locationName;
-					$('#first').html( apCity + apTime );
-					$('#second').html( apValue );
+				if(!($("#first")[0])){
+					$('#C').append( '<tr id="first">' + apCity + apTime + '</tr><tr id="second">' + apValue + '</tr>');
+				}
 			});
 		});
 		
