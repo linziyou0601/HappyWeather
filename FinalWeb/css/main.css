@@ -25,6 +25,7 @@ a, a:hover{ text-decoration: none; }
 }
 
 #C{
+    width: 80vw;
     margin: 0 auto;
     border-collapse: collapse;
     text-align: center;
