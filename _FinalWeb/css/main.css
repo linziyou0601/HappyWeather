@@ -1,0 +1,16 @@
+@charset "utf-8";
+/*--導入Google線上字型--------------------------------------------------*/
+@import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
+
+body{ margin: 0; }
+a, a:hover{ text-decoration: none; }
+
+/*--flex水平及垂直版面設定--------------------------------------------------*/ 
+.flex{
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+    flex: 1 1 auto; /*IE11*/
+}
+.flex_COL{ flex-direction: column; }
