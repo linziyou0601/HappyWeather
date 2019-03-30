@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>24小時預報</title>
+	<title>天氣預報</title>
 	<script src="js/jquery-3.3.1.min.js"></script><!--嵌入基本的JQuery套件-->
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
@@ -13,51 +13,71 @@
 		<div class="flex flex_COL">
 			<table id="C">
 				<tr>
-					<th colspan="25">
-						<select id="City"></select><br/>
+					<th>
+						<select id="City"></select>
 					</th>
+					<th colspan="3">36小時預估天氣</th>
 				</tr>
+				<tr id="weatherTitle"><td>持續時間</td><td>天氣現象</td><td>降雨機率</td><td>氣溫</td></tr>
+				<tr id="weather01"></tr><tr id="weather02"></tr><tr id="weather03"></tr><tr id="weather04"></tr>
 			</table>
 		</div>
 	</div>
 	
 	<script>
-		var CWB;
-		var weather = {};
-		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
-			CWB = Data["records"]["locations"][0]["location"];
-			CWB.map(function(getCity){
-				var locationName = new Object, time = new Array(8), value = new Array(8);
-				var apCity, apTime, apValue;
-					apCity = '<td rowspan="2">' + getCity.locationName + '</td>';
-				$('#City').append('<option value="' + getCity.geocode + '">' + getCity.locationName + '</option>');
-				
-				locationName.City = getCity.locationName;
-				for(var i =0; i<8; i++){
-					var nowCity = getCity.weatherElement[1].time[i];
-						apTime += '<td>' + nowCity.startTime.substring(11,13) + ' - ' + nowCity.endTime.substring(11,13) + '時' + '</td>';
-						apValue += '<td>' + nowCity.elementValue[0].value + '</td>';
-					time[i] = nowCity.startTime.substring(11,13) + ' - ' + nowCity.endTime.substring(11,13) + '時';
-					value[i] = nowCity.elementValue[0].value;
+		//取得36小時天氣資料
+		var weather = {}; //天氣物件
+		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
+			Data["records"]["location"].map(function(getCity){
+				//宣告暫存陣列
+				var  Time = [], Wx = [], PoP = [], T = [];
+				//建立下拉選單
+				$('#City').append('<option>' + getCity.locationName + '</option>');
+				//建立時間、現象、降雨率、溫度陣列
+				for(var i =0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
+					//暫存時間、現象、降雨率、溫度至陣列
+					var _Time = getCity.weatherElement[0].time[i];
+					var _Wx = getCity.weatherElement[0].time[i].parameter.parameterName;
+					var _PoP = getCity.weatherElement[1].time[i].parameter.parameterName;
+					var _MinT = getCity.weatherElement[2].time[i].parameter.parameterName;
+					var _MaxT = getCity.weatherElement[4].time[i].parameter.parameterName;
+					Time[i] = _Time.startTime.substring(5,16) + ' 起<br/>' + _Time.endTime.substring(5,16) + ' 止';
+					Wx[i] = _Wx;
+					PoP[i] = '降雨機率 ' + _PoP + '%';
+					T[i] = _MinT + ' ~ ' + _MaxT + ' 度';
 				}
-				locationName.Time = time;
-				locationName.Value = value;
-				weather[getCity.geocode] = locationName;
-				if(!($("#first")[0])){
-					$('#C').append( '<tr id="first">' + apCity + apTime + '</tr><tr id="second">' + apValue + '</tr>');
-				}
+				//縣市名、時間、現象、降雨率、溫度存入物件
+				var cityObj = {
+					"City" : getCity.locationName,
+					"Time" : Time,
+					"Wx" : Wx,
+					"PoP" : PoP,
+					"T" : T
+				};
+				//縣市物件存入天氣陣列
+				weather[getCity.locationName] = cityObj;
 			});
+			EditTd($('#City').val("臺北市").val());
 		});
 		
-		$('#City').on('change', function() {
-			var apCity, apTime, apValue;
-			apCity = '<td rowspan="2">' + weather[this.value]["City"] + '</td>';
-			for(var i =0; i<8; i++){
-				apTime += '<td>' + weather[this.value]["Time"][i] + '</td>'
-				apValue += '<td>' + weather[this.value]["Value"][i] + '</td>'
+		//更改Table的TD
+		var EditTd = function (cityName){
+			//宣告暫存陣列
+			var nowTime = [], target;
+			for(var i = 0; i < (weather[cityName]["Time"][i]).length; i++){
+				//依時間將天氣資料帶入
+				nowTime[i] = '<td>' + weather[cityName]["Time"][i] + '</td>';
+				nowTime[i] += '<td>' + weather[cityName]["Wx"][i] + '</td>';
+				nowTime[i] += '<td>' + weather[cityName]["PoP"][i] + '</td>';
+				nowTime[i] += '<td>' + weather[cityName]["T"][i] + '</td>';
+				//放至<tr>裡
+				$('#weather0' + (i+1)).html(nowTime[i]);
 			}
-			$('#first').html( apCity + apTime );
-			$('#second').html( apValue );
+		};
+
+		//下拉選單改變時
+		$('#City').on('change', function() {
+			EditTd(this.value);
 		});
 	</script>
 </body>

@@ -15,7 +15,7 @@ a, a:hover{ text-decoration: none; }
 }
 .flex_COL{ flex-direction: column; }
 
-/*--天氣表格樣式--------------------------------------------------*/ 
+/*--天氣區--------------------------------------------------*/ 
 #home{
     min-height: 100vh;
     padding: 10px;
@@ -23,20 +23,34 @@ a, a:hover{ text-decoration: none; }
     background-size: cover;
     color: #FFF;
 }
+select {
+    background: rgba(245,245,245,0.5);
+    border:thin rgba(245,245,245,0.3) solid;
+    padding: 5px 20px;
+    font: 300 15px/20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+    vertical-align: center;
+}
+    /*--天氣表格樣式--------------------------------------------------*/ 
+    #C{
+        width: 60vw;
+        margin: 0 auto;
+        border-collapse: collapse;
+        text-align: center;
+    }
+    #C th{
+        background-color:rgba(245,245,245,0.7);
+        padding: 15px;
+        font: 400 20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        color: #333;
+    }
+    #C td{
+        width:25%;
+        padding: 15px;
+        font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+    }
+    #C td{border:thin rgba(245,245,245,0.5) solid;}
+    #weatherTitle{
+        background-color:rgba(50,50,50,0.7);
+    }
+    
 
-#C{
-    width: 80vw;
-    margin: 0 auto;
-    border-collapse: collapse;
-    text-align: center;
-}
-#C th{
-    background-color:rgba(245,245,245,0.7);
-    padding: 10px;
-    font: 400 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
-}
-#C td{
-    padding: 8px;
-    font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
-}
-#C td{border:thin rgba(245,245,245,0.7) solid;}
