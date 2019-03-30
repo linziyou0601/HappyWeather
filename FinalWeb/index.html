@@ -3,30 +3,19 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Pay的小教室 - B10723007</title>
+	<title>24小時預報</title>
 	<script src="js/jquery-3.3.1.min.js"></script><!--嵌入基本的JQuery套件-->
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-	<div style="padding:10px; align: center;" >
-		<table id="C" border="1" align="center">
+	<div>
+		<table id="C">
 			<tr>
-				<th>縣市</th>
-				<th>天氣現象</th>
+				<th width="150">縣市</th>
+				<th colspan="24">未來24小時天氣現象預報</th>
 			</tr>
 		</table>
-		<pre>
-			<code>
-				var CWB;
-				$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
-					CWB = Data["records"]["locations"][0]["location"];
-					CWB.map(function(getCity){
-						$('#C').append('&lt;tr&gt;&lt;td&gt;' + getCity.locationName + '&lt;/td&gt;&lt;td&gt;' + getCity.weatherElement[1].time[8].elementValue[0].value + '&lt;/td&gt;&lt;/tr&gt;');
-					});
-				});
-			</code>
-		</pre>
 	</div>
 	
 	<script>
@@ -35,7 +24,14 @@
 		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-089?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
 			CWB = Data["records"]["locations"][0]["location"];
 			CWB.map(function(getCity){
-				$('#C').append('<tr><td>' + getCity.locationName + '</td><td>' + getCity.weatherElement[1].time[8].elementValue[0].value + '</td></tr>');
+				var locat = '<td rowspan="2" class="cityName">' + getCity.locationName + '</td>';
+				var time, descript;
+				for(var i =0; i<8; i++){
+					desc = getCity.weatherElement[1].time[i];
+					time += '<td>' + desc.startTime.substring(11,13) + ' - ' + desc.endTime.substring(11,13) + '時</td>';
+					descript += '<td>' + getCity.weatherElement[1].time[i].elementValue[0].value + '</td>';
+				}
+				$('#C').append('<tr>' + locat + time + '</tr><tr>' + descript + '</tr>');
 			});
 		});
 	</script>
