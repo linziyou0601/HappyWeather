@@ -13,7 +13,7 @@ a, a:hover{text-decoration: none;}
     justify-content: center;
     flex: 1 1 auto; /*IE11*/
 }
-.flex_COL{flex-direction: column; height:calc(100vh - 50px);/*IE11*/}
+.flex_COL{flex-direction: column; height:calc(100vh - 90px);/*IE11*/}
 .gird{margin: 20px;}
 
 /*--主內容區--------------------------------------------------*/ 
