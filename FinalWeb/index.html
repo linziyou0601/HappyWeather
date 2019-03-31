@@ -97,7 +97,8 @@
 			"臺東縣":{Cname: "臺東縣", Ename: "Taitung_County"},"澎湖縣":{Cname: "澎湖縣", Ename: "Penghu_County"},
 			"金門縣":{Cname: "金門縣", Ename: "Kinmen_County"},"連江縣":{Cname: "連江縣", Ename: "Lienchiang_County"}
 		};
-		var dayTimeDescript = {'18:00':["今日白天 ","今晚明晨 ","明日白天"],'06:00':["今晚明晨 ","明日白天 ","明日晚上"]};
+		var dayTimeDescript = {'18:00':[["今日白天 ","day"],["今晚明晨 ","night"],["明日白天 ","day"]],'06:00':[["今晚明晨 ","night"],["明日白天 ","day"],["明日晚上 ","night"]]};
+		var weatherIcon;
 
 		//建立下拉選單
 		Object.keys(weatherObj).map(function(cityName){
@@ -111,19 +112,20 @@
 			$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON",function(Data){
 				Data["records"]["location"].map(function(getCity){
 					//宣告暫存陣列
-					var  Day = [], Temp = [], Wx = [], CI = [], PoP = [];//宣告暫存陣列
+					var  Day = [], Code = [], Temp = [], Wx = [], CI = [], PoP = [];//宣告暫存陣列
 					//建立時間、現象、降雨率、溫度陣列
 					for(var i = 0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
 						//暫存時間、現象、降雨率、溫度至陣列
 						Day[i] = getCity.weatherElement[0].time[i].startTime.substring(11,16) + ' - ' + getCity.weatherElement[0].time[i].endTime.substring(11,16);
-						Day[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i] + '<br/>' + Day[i];
+						Day[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i][0] + '<br/>' + Day[i];
+						Code[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i][1]
 						Wx[i] = getCity.weatherElement[0].time[i].parameter.parameterName;
 						PoP[i] = getCity.weatherElement[1].time[i].parameter.parameterName + '%';
 						Temp[i] = getCity.weatherElement[2].time[i].parameter.parameterName + '°-' + getCity.weatherElement[4].time[i].parameter.parameterName + '°';
 						CI[i] = getCity.weatherElement[3].time[i].parameter.parameterName;
 					}
 					//縣市名、時間、現象、降雨率、溫度存入物件
-					var cityObj = {"Day": Day, "Temp": Temp, "Wx": Wx, "CI": CI, "PoP": PoP};
+					var cityObj = {"Day": Day, "Code": Code, "Temp": Temp, "Wx": Wx, "CI": CI, "PoP": PoP};
 					//縣市物件存入天氣陣列
 					weatherObj[getCity.locationName]["todayAndTorromow"] = cityObj;
 				});
@@ -134,6 +136,10 @@
 			});
 			$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0001-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&locationName=%E6%A1%83%E5%9C%92,%E6%96%B0%E7%AB%B9%E5%B8%82%E6%9D%B1%E5%8D%80,%E8%8B%97%E6%A0%97,%E5%8D%97%E6%8A%95,%E6%96%97%E5%85%AD,%E5%A4%AA%E4%BF%9D,%E5%B1%8F%E6%9D%B1&elementName=TEMP,HUMD,H_24R", function(Data){
 				pushInWeatherObj(Data);
+			});
+			//--------------------載入天氣狀況圖示對應代碼表--------------------
+			$.getJSON("weatherIconTable.json", function(Data){
+				weatherIcon = Data;
 			});
 			//--------------------載入後改變初始選取資料--------------------
 			editWeatherData($('#selectCity').val("臺北市").selectpicker('refresh').val());
@@ -169,11 +175,12 @@
 			//改今明預報
 			for(var i = 0; i < (weatherObj[cityName]["todayAndTorromow"]["Day"][i]).length; i++){
 				//依時間將天氣資料帶入
-				var nowTime = '<td>' + weatherObj[cityName]["todayAndTorromow"]["Day"][i] + '</td>';
-				nowTime += '<td>' + weatherObj[cityName]["todayAndTorromow"]["Temp"][i] + '</td>';
-				nowTime += '<td>' + weatherObj[cityName]["todayAndTorromow"]["Wx"][i] + '</td>';
-				nowTime += '<td>' + weatherObj[cityName]["todayAndTorromow"]["CI"][i] + '</td>';
-				nowTime += '<td>' + weatherObj[cityName]["todayAndTorromow"]["PoP"][i] + '</td>';
+				var Data = weatherObj[cityName]["todayAndTorromow"];
+				var nowTime = '<td>' + Data["Day"][i].substring(0,4) + '</td>';
+				nowTime += '<td>' + Data["Temp"][i] + '</td>';
+				nowTime += '<td><img width="60px" src="images/weatherIcon/' + Data["Code"][i] + '/' + weatherIcon[Data["Wx"][i]] + '.svg" title="' + Data["Wx"][i] + '"/></td>';
+				nowTime += '<td>' + Data["CI"][i] + '</td>';
+				nowTime += '<td>' + Data["PoP"][i] + '</td>';
 				//放至<tr>裡
 				$('#twoDayTimes0' + (i+1)).html(nowTime);
 			};

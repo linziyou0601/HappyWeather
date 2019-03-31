@@ -74,7 +74,6 @@ section, footer{
     }
     table th{padding: 10px 15px; font: 300 15px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
     table td{
-        width:20%;
         padding: 15px;
         border-top:thin solid rgba(20,20,20,0.5);
         font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
