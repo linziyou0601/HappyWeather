@@ -35,7 +35,6 @@ section, footer{
     /*--位置選擇--*/
     .bootstrap-select .btn {
         background-color: transparent;
-        padding: 12px 12px;
         border: none;
         font: 300 45px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
         color: #FFF;
@@ -52,7 +51,7 @@ section, footer{
     }
     /*--目前天氣樣式--*/ 
     #currentTemp{font: 300 8vw/10vw 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
-    .weatherInfo{font: 300 15px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    .weatherInfo{font: 300 18px/35px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
 
 /*--區塊二--------------------------------------------------*/ 
 #section2{
@@ -71,6 +70,7 @@ section, footer{
         width: 70vw;
         margin: 0 auto;
         color: #FFF;
+        table-layout:fixed
     }
     table th{padding: 10px 15px; font: 300 15px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
     table td{
@@ -78,6 +78,13 @@ section, footer{
         border-top:thin solid rgba(20,20,20,0.5);
         font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
+
+/*--區塊三--------------------------------------------------*/ 
+#section3{
+    background: url('../images/bg_home.jpg') no-repeat center center;
+    background-size: cover;
+    color: #FFF;
+}
 
 /*--footer其餘樣式--------------------------------------------------*/ 
 footer{ background-color: #1e1f26; color: #FFF; }

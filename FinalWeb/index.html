@@ -66,6 +66,18 @@
 				</div>
 			</div>
 		</section>
+
+		<section id="section3" class="flex">
+			<div class="flex flex_COL gird">
+				<h1>一週天氣</h1>
+				<div id="weekWeather" class="tableRound">
+					<table>
+						<tr id="weekWeatherTitle"><th>location</th><th>times1</th><th>times2</th><th>times3</th><th>times4</th><th>times5</th><th>times6</th><th>times7</th></tr>
+						<tr id="weekWeatherDay"><td colspan="8">morning weather</td></tr><tr id="weekWeatherNight"><td colspan="8">night weather</td></tr>
+					</table>
+				</div>
+			</div>
+		</section>
 	</content>
 	
 	<!--頁尾-->
@@ -81,25 +93,11 @@
 	</footer>
 	
 
-	<!--JavaScript、JQuery-->
+	<!--JavaScript、JQuery---------->
+	<!--將天氣物件變數傳入-->
+	<script src="js/weatherObj.js"></script>
+	
 	<script>
-		//天氣物件
-		var weatherObj = {
-			"基隆市":{Cname: "基隆市", Ename: "Keelung_City"},"臺北市":{Cname: "臺北市", Ename: "Taipei_City"},
-			"新北市":{Cname: "新北市", Ename: "New_Taipei_City"},"桃園市":{Cname: "桃園市", Ename: "Taoyuan_City"},
-			"新竹市":{Cname: "新竹市", Ename: "Hsinchu_City"},"新竹縣":{Cname: "新竹縣", Ename: "Hsinchu_County"},
-			"苗栗縣":{Cname: "苗栗縣", Ename: "Miaoli_County"},"臺中市":{Cname: "臺中市", Ename: "Taichung_City"},
-			"彰化縣":{Cname: "彰化縣", Ename: "Changhua_County"},"南投縣":{Cname: "南投縣", Ename: "Nantou_County"},
-			"雲林縣":{Cname: "雲林縣", Ename: "Yunlin_County"},"嘉義市":{Cname: "嘉義市", Ename: "Chiayi_City"},
-			"嘉義縣":{Cname: "嘉義縣", Ename: "Chiayi_County"},"臺南市":{Cname: "臺南市", Ename: "Tainan_City"},
-			"高雄市":{Cname: "高雄市", Ename: "Kaohsiung_City"},"屏東縣":{Cname: "屏東縣", Ename: "Pingtung_County"},
-			"宜蘭縣":{Cname: "宜蘭縣", Ename: "Yilan_County"},"花蓮縣":{Cname: "花蓮縣", Ename: "Hualien_County"},
-			"臺東縣":{Cname: "臺東縣", Ename: "Taitung_County"},"澎湖縣":{Cname: "澎湖縣", Ename: "Penghu_County"},
-			"金門縣":{Cname: "金門縣", Ename: "Kinmen_County"},"連江縣":{Cname: "連江縣", Ename: "Lienchiang_County"}
-		};
-		var dayTimeDescript = {'18:00':[["今日白天 ","day"],["今晚明晨 ","night"],["明日白天 ","day"]],'06:00':[["今晚明晨 ","night"],["明日白天 ","day"],["明日晚上 ","night"]]};
-		var weatherIcon;
-
 		//建立下拉選單
 		Object.keys(weatherObj).map(function(cityName){
 			$('#selectCity').append('<option value="'+ cityName  + '">' + cityName + '</option>');
@@ -137,10 +135,6 @@
 			$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0001-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&locationName=%E6%A1%83%E5%9C%92,%E6%96%B0%E7%AB%B9%E5%B8%82%E6%9D%B1%E5%8D%80,%E8%8B%97%E6%A0%97,%E5%8D%97%E6%8A%95,%E6%96%97%E5%85%AD,%E5%A4%AA%E4%BF%9D,%E5%B1%8F%E6%9D%B1&elementName=TEMP,HUMD,H_24R", function(Data){
 				pushInWeatherObj(Data);
 			});
-			//--------------------載入天氣狀況圖示對應代碼表--------------------
-			$.getJSON("weatherIconTable.json", function(Data){
-				weatherIcon = Data;
-			});
 			//--------------------載入後改變初始選取資料--------------------
 			editWeatherData($('#selectCity').val("臺北市").selectpicker('refresh').val());
 		});
@@ -152,7 +146,7 @@
 				var City = getCity["parameter"][0]["parameterValue"];
 				weatherObj[City]["locName"] = getCity["locationName"];
 				weatherObj[City]["locTown"] = getCity["parameter"][2]["parameterValue"];
-				weatherObj[City]["currentTemp"] = getCity["weatherElement"][0]["elementValue"] + '°C';
+				weatherObj[City]["currentTemp"] = getCity["weatherElement"][0]["elementValue"].substring(0,4) + '°C';
 				weatherObj[City]["currentHUMD"] = getCity["weatherElement"][1]["elementValue"].substring(2) + '%';
 				weatherObj[City]["current24R"] = getCity["weatherElement"][2]["elementValue"] + 'mm';
 				weatherObj[City]["currentWx"] = weatherObj[City]["todayAndTorromow"]["Wx"][0];
