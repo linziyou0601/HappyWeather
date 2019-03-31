@@ -14,44 +14,83 @@ a, a:hover{text-decoration: none;}
     flex: 1 1 auto; /*IE11*/
 }
 .flex_COL{flex-direction: column;}
-.gird{margin :20px;}
+.gird{margin: 20px;}
 
+/*--主內容區--------------------------------------------------*/ 
+section, footer{
+    min-height: 100vh;
+    padding-top: 50px;
+    text-align: center;
+}
+    h1{
+        margin: 20px auto;
+        font: 300 40px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+    }
 /*--天氣區--------------------------------------------------*/ 
 #home{
-    min-height: 100vh;
-    padding: 10px;
     background: url('../images/bg_home.jpg') no-repeat center center;
     background-size: cover;
     color: #FFF;
 }
+    /*--位置選擇--*/
+    .bootstrap-select .btn {
+        background-color: transparent;
+        padding: 12px 12px;
+        border: none;
+        font: 300 45px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        color: #FFF;
+    }
+    .bootstrap-select .btn[aria-expanded="true"]  {
+        background-color: transparent;
+        color: #FFF;
+    }
+    .dropdown-toggle::after {
+        font: 900 25px "Font Awesome 5 Free";
+        content: "\f107";
+        border: none;
+    }
+    /*--目前天氣樣式--*/ 
+    #currentTemp{font: 300 8vw/10vw 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    .weatherInfo{font: 300 15px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
 
-    /*--目前天氣樣式--------------------------------------------------*/ 
-    #currentWz{font: 300 25px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
-    #currentTemp{font: 300 120px/150px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
-
-    /*--天氣表格樣式--------------------------------------------------*/ 
-    #todayAndTomorrow{
+/*--區塊二--------------------------------------------------*/ 
+#section2{
+    background: url('../images/bg_home.jpg') no-repeat center center;
+    background-size: cover;
+    color: #FFF;
+}
+    /*--天氣表格樣式--*/ 
+    .tableRound{
+        background-color:rgba(245,245,245,0.3);
+        padding: 5px 20px;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px #222;
+    }
+    table{
+        width: 70vw;
         margin: 0 auto;
-        border-collapse: collapse;
-        text-align: center;
+        color: #FFF;
     }
-    #todayAndTomorrow th{
-        background-color:rgba(245,245,245,0.7);
-        padding: 15px;
-        font: 400 20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
-        color: #333;
-    }
-    #todayAndTomorrow td{
+    table th{padding: 10px 15px; font: 300 15px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    table td{
         width:20%;
         padding: 15px;
+        border-top:thin solid rgba(20,20,20,0.5);
         font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
-    #todayAndTomorrow td{border:thin rgba(245,245,245,0.5) solid;}
-    #twoDayTimesTitle{
-        background-color:rgba(50,50,50,0.7);
+
+/*--footer其餘樣式--------------------------------------------------*/ 
+footer{ background-color: #1e1f26; color: #FFF; }
+    .ftitle{ font: 300 15px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    .aboutMe{
+        margin: 10px auto 40px auto;
+        padding: 20px 30px;
+        border: thin solid #CCC;
+        border-radius: 10px;
+        font: 400 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
-    
 
 @media screen and (orientation: portrait) {
-    .flex{ flex-direction: column; }
+    #currentTemp{font: 300 10vh/12vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    .flex{flex-direction: column;}
 }
