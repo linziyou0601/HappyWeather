@@ -13,7 +13,7 @@ a, a:hover{text-decoration: none;}
     justify-content: center;
     flex: 1 1 auto; /*IE11*/
 }
-.flex_COL{flex-direction: column;}
+.flex_COL{flex-direction: column; height:100vh;}
 .gird{margin: 20px;}
 
 /*--主內容區--------------------------------------------------*/ 
@@ -45,9 +45,10 @@ section, footer{
         color: #FFF;
     }
     .dropdown-toggle::after {
+        padding-left:20px;
+        border: none;
         font: 900 25px "Font Awesome 5 Free";
         content: "\f107";
-        border: none;
     }
     /*--目前天氣樣式--*/ 
     #currentTemp{font: 300 8vw/10vw 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
