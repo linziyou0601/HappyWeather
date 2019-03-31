@@ -30,27 +30,34 @@ select {
     font: 300 15px/20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     vertical-align: center;
 }
+    /*--目前天氣表格樣式--------------------------------------------------*/ 
+    #currentCName{font: 300 45px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    #currentWz{font: 300 25px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    #currentTemp{font: 300 120px/150px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+
     /*--天氣表格樣式--------------------------------------------------*/ 
-    #C{
-        width: 60vw;
+    #todayAndTomorrow{
         margin: 0 auto;
         border-collapse: collapse;
         text-align: center;
     }
-    #C th{
+    #todayAndTomorrow th{
         background-color:rgba(245,245,245,0.7);
         padding: 15px;
         font: 400 20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
         color: #333;
     }
-    #C td{
-        width:25%;
+    #todayAndTomorrow td{
+        width:20%;
         padding: 15px;
         font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
-    #C td{border:thin rgba(245,245,245,0.5) solid;}
-    #weatherTitle{
+    #todayAndTomorrow td{border:thin rgba(245,245,245,0.5) solid;}
+    #twoDayTimesTitle{
         background-color:rgba(50,50,50,0.7);
     }
     
 
+@media screen and (max-width: 768px) {
+    .flex{ flex-direction: column; }
+}

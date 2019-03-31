@@ -11,108 +11,114 @@
 <body>
 	<div id="home" class="flex">
 		<div class="flex flex_COL">
-			<table id="C">
+			<span id="currentCName">臺北市</span>
+			<span id="currentWx">多雲到晴</span>
+			<span id="currentTemp">21°C</span>
+		</div>
+		<div class="flex flex_COL">
+			<table id="todayAndTomorrow">
 				<tr>
 					<th>
 						<select id="City"></select>
 					</th>
-					<th colspan="3">36小時預估天氣</th>
+					<th colspan="4">今明預報</th>
 				</tr>
-				<tr id="weatherTitle"><td>持續時間</td><td>天氣現象</td><td>降雨機率</td><td>氣溫</td></tr>
-				<tr id="weather01"></tr><tr id="weather02"></tr><tr id="weather03"></tr><tr id="weather04"></tr>
+				<tr id="twoDayTimesTitle"><td>持續時間</td><td>氣溫</td><td>天氣現象</td><td>舒適度</td><td>降雨機率</td></tr>
+				<tr id="twoDayTimes01"></tr><tr id="twoDayTimes02"></tr><tr id="twoDayTimes03"></tr><tr id="twoDayTimes04"><tr id="twoDayTimes05"></tr>
 			</table>
+			
 		</div>
 	</div>
 	
 	<script>
-		//取得36小時天氣資料
-		var weather = {}; //天氣物件
-		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
-			Data["records"]["location"].map(function(getCity){
-				//宣告暫存陣列
-				var  Time = [], Wx = [], PoP = [], T = [];
-				//建立下拉選單
-				$('#City').append('<option>' + getCity.locationName + '</option>');
-				//建立時間、現象、降雨率、溫度陣列
-				for(var i =0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
-					//暫存時間、現象、降雨率、溫度至陣列
-					var _Time = getCity.weatherElement[0].time[i];
-					var _Wx = getCity.weatherElement[0].time[i].parameter.parameterName;
-					var _PoP = getCity.weatherElement[1].time[i].parameter.parameterName;
-					var _MinT = getCity.weatherElement[2].time[i].parameter.parameterName;
-					var _MaxT = getCity.weatherElement[4].time[i].parameter.parameterName;
-					Time[i] = _Time.startTime.substring(5,16) + ' 起<br/>' + _Time.endTime.substring(5,16) + ' 止';
-					Wx[i] = _Wx;
-					PoP[i] = '降雨機率 ' + _PoP + '%';
-					T[i] = _MinT + ' ~ ' + _MaxT + ' 度';
-				}
-				//縣市名、時間、現象、降雨率、溫度存入物件
-				var cityObj = {
-					"City" : getCity.locationName,
-					"Time" : Time,
-					"Wx" : Wx,
-					"PoP" : PoP,
-					"T" : T
-				};
-				//縣市物件存入天氣陣列
-				weather[getCity.locationName] = cityObj;
-			});
-			EditTd($('#City').val("臺北市").val());
-		});
-
-
-		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
-			Data["records"]["location"].map(function(getCity){
-				//宣告暫存陣列
-				var  Time = [], Wx = [], PoP = [], T = [];
-				//建立下拉選單
-				$('#City').append('<option>' + getCity.locationName + '</option>');
-				//建立時間、現象、降雨率、溫度陣列
-				for(var i =0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
-					//暫存時間、現象、降雨率、溫度至陣列
-					var _Time = getCity.weatherElement[0].time[i];
-					var _Wx = getCity.weatherElement[0].time[i].parameter.parameterName;
-					var _PoP = getCity.weatherElement[1].time[i].parameter.parameterName;
-					var _MinT = getCity.weatherElement[2].time[i].parameter.parameterName;
-					var _MaxT = getCity.weatherElement[4].time[i].parameter.parameterName;
-					Time[i] = _Time.startTime.substring(5,16) + ' 起<br/>' + _Time.endTime.substring(5,16) + ' 止';
-					Wx[i] = _Wx;
-					PoP[i] = '降雨機率 ' + _PoP + '%';
-					T[i] = _MinT + ' ~ ' + _MaxT + ' 度';
-				}
-				//縣市名、時間、現象、降雨率、溫度存入物件
-				var cityObj = {
-					"City" : getCity.locationName,
-					"Time" : Time,
-					"Wx" : Wx,
-					"PoP" : PoP,
-					"T" : T
-				};
-				//縣市物件存入天氣陣列
-				weather[getCity.locationName] = cityObj;
-			});
-			EditTd($('#City').val("臺北市").val());
-		});
-		
-		//更改Table的TD
-		var EditTd = function (cityName){
-			//宣告暫存陣列
-			var nowTime = [], target;
-			for(var i = 0; i < (weather[cityName]["Time"][i]).length; i++){
-				//依時間將天氣資料帶入
-				nowTime[i] = '<td>' + weather[cityName]["Time"][i] + '</td>';
-				nowTime[i] += '<td>' + weather[cityName]["Wx"][i] + '</td>';
-				nowTime[i] += '<td>' + weather[cityName]["PoP"][i] + '</td>';
-				nowTime[i] += '<td>' + weather[cityName]["T"][i] + '</td>';
-				//放至<tr>裡
-				$('#weather0' + (i+1)).html(nowTime[i]);
-			}
+		//天氣物件
+		var weatherObj = {
+			"基隆市":{Cname: "基隆市", Ename: "Keelung_City"},"臺北市":{Cname: "臺北市", Ename: "Taipei_City"},
+			"新北市":{Cname: "新北市", Ename: "New_Taipei_City"},"桃園市":{Cname: "桃園市", Ename: "Taoyuan_City"},
+			"新竹市":{Cname: "新竹市", Ename: "Hsinchu_City"},"新竹縣":{Cname: "新竹縣", Ename: "Hsinchu_County"},
+			"苗栗縣":{Cname: "苗栗縣", Ename: "Miaoli_County"},"臺中市":{Cname: "臺中市", Ename: "Taichung_City"},
+			"彰化縣":{Cname: "彰化縣", Ename: "Changhua_County"},"南投縣":{Cname: "南投縣", Ename: "Nantou_County"},
+			"雲林縣":{Cname: "雲林縣", Ename: "Yunlin_County"},"嘉義市":{Cname: "嘉義市", Ename: "Chiayi_City"},
+			"嘉義縣":{Cname: "嘉義縣", Ename: "Chiayi_County"},"臺南市":{Cname: "臺南市", Ename: "Tainan_City"},
+			"高雄市":{Cname: "高雄市", Ename: "Kaohsiung_City"},"屏東縣":{Cname: "屏東縣", Ename: "Pingtung_County"},
+			"宜蘭縣":{Cname: "宜蘭縣", Ename: "Yilan_County"},"花蓮縣":{Cname: "花蓮縣", Ename: "Hualien_County"},
+			"臺東縣":{Cname: "臺東縣", Ename: "Taitung_County"},"澎湖縣":{Cname: "澎湖縣", Ename: "Penghu_County"},
+			"金門縣":{Cname: "金門縣", Ename: "Kinmen_County"},"連江縣":{Cname: "連江縣", Ename: "Lienchiang_County"}
 		};
+		var dayTimeDescript = {'18:00':["今日白天 ","今晚至明晨 ","明日白天"],'06:00':["今晚至明晨 ","明日白天 ","明日晚上"]};
+
+		//建立下拉選單
+		Object.keys(weatherObj).map(function(cityName){
+			$('#City').append('<option>' + cityName + '</option>');
+		})
+		
+		//取得36小時天氣資料
+		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
+			Data["records"]["location"].map(function(getCity){
+				//宣告暫存陣列
+				var  Day = [], Temp = [], Wx = [], CI = [], PoP = [];//宣告暫存陣列
+				//建立時間、現象、降雨率、溫度陣列
+				for(var i = 0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
+					//暫存時間、現象、降雨率、溫度至陣列
+					Day[i] = getCity.weatherElement[0].time[i].startTime.substring(11,16) + ' - ' + getCity.weatherElement[0].time[i].endTime.substring(11,16);
+					Day[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i] + '<br/>' + Day[i];
+					Wx[i] = getCity.weatherElement[0].time[i].parameter.parameterName;
+					PoP[i] = getCity.weatherElement[1].time[i].parameter.parameterName + '%';
+					Temp[i] = getCity.weatherElement[2].time[i].parameter.parameterName + '°-' + getCity.weatherElement[4].time[i].parameter.parameterName + '°';
+					CI[i] = getCity.weatherElement[3].time[i].parameter.parameterName;
+				}
+				//縣市名、時間、現象、降雨率、溫度存入物件
+				var cityObj = {"Day": Day, "Temp": Temp, "Wx": Wx, "CI": CI, "PoP": PoP};
+				//縣市物件存入天氣陣列
+				weatherObj[getCity.locationName]["todayAndTorromow"] = cityObj;
+			});
+			EditTd($('#City').val("臺北市").val());
+		});
+
+		//取得自動測站天氣資料
+		$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON", function(Data){
+			Data["records"]["location"].map(function(getCity){
+				//宣告暫存陣列
+				var  Day = [], Temp = [], Wx = [], CI = [], PoP = [];//宣告暫存陣列
+				//建立時間、現象、降雨率、溫度陣列
+				for(var i = 0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
+					//暫存時間、現象、降雨率、溫度至陣列
+					Day[i] = getCity.weatherElement[0].time[i].startTime.substring(11,16) + ' - ' + getCity.weatherElement[0].time[i].endTime.substring(11,16);
+					Day[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i] + '<br/>' + Day[i];
+					Wx[i] = getCity.weatherElement[0].time[i].parameter.parameterName;
+					PoP[i] = getCity.weatherElement[1].time[i].parameter.parameterName + '%';
+					Temp[i] = getCity.weatherElement[2].time[i].parameter.parameterName + '°-' + getCity.weatherElement[4].time[i].parameter.parameterName + '°';
+					CI[i] = getCity.weatherElement[3].time[i].parameter.parameterName;
+				}
+				//縣市名、時間、現象、降雨率、溫度存入物件
+				var cityObj = {"Day": Day, "Temp": Temp, "Wx": Wx, "CI": CI, "PoP": PoP};
+				//縣市物件存入天氣陣列
+				weatherObj[getCity.locationName]["todayAndTorromow"] = cityObj;
+			});
+			
+		});
+
 
 		//下拉選單改變時
 		$('#City').on('change', function() {
 			EditTd(this.value);
 		});
+
+		//更改Table的<td>
+		var EditTd = function (cityName){
+			//宣告暫存陣列
+			var nowTime = [], target;
+			for(var i = 0; i < (weatherObj[cityName]["todayAndTorromow"]["Day"][i]).length; i++){
+				//依時間將天氣資料帶入
+				nowTime[i] = '<td>' + weatherObj[cityName]["todayAndTorromow"]["Day"][i] + '</td>';
+				nowTime[i] += '<td>' + weatherObj[cityName]["todayAndTorromow"]["Temp"][i] + '</td>';
+				nowTime[i] += '<td>' + weatherObj[cityName]["todayAndTorromow"]["Wx"][i] + '</td>';
+				nowTime[i] += '<td>' + weatherObj[cityName]["todayAndTorromow"]["CI"][i] + '</td>';
+				nowTime[i] += '<td>' + weatherObj[cityName]["todayAndTorromow"]["PoP"][i] + '</td>';
+				//放至<tr>裡
+				$('#twoDayTimes0' + (i+1)).html(nowTime[i]);
+			}
+		};
 	</script>
 </body>
 </html>
