@@ -3,8 +3,8 @@
 @import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
-body{ margin: 0; }
-a, a:hover{ text-decoration: none; }
+body{margin: 0;}
+a, a:hover{text-decoration: none;}
 
 /*--flex水平及垂直版面設定--------------------------------------------------*/ 
 .flex{
@@ -13,7 +13,8 @@ a, a:hover{ text-decoration: none; }
     justify-content: center;
     flex: 1 1 auto; /*IE11*/
 }
-.flex_COL{ flex-direction: column; }
+.flex_COL{flex-direction: column;}
+.gird{margin :20px;}
 
 /*--天氣區--------------------------------------------------*/ 
 #home{
@@ -23,15 +24,8 @@ a, a:hover{ text-decoration: none; }
     background-size: cover;
     color: #FFF;
 }
-select {
-    background: rgba(245,245,245,0.5);
-    border:thin rgba(245,245,245,0.3) solid;
-    padding: 5px 20px;
-    font: 300 15px/20px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
-    vertical-align: center;
-}
-    /*--目前天氣表格樣式--------------------------------------------------*/ 
-    #currentCName{font: 300 45px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+
+    /*--目前天氣樣式--------------------------------------------------*/ 
     #currentWz{font: 300 25px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
     #currentTemp{font: 300 120px/150px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
 

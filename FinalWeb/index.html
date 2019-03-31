@@ -4,24 +4,30 @@
 <head>
 	<meta charset="utf-8">
 	<title>天氣預報</title>
-	<script src="js/jquery-3.3.1.min.js"></script><!--嵌入基本的JQuery套件-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 引入 基本JQuery -->
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<!-- 引入 基本Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<!-- 引入 主要css樣式 -->
 	<link href="css/main.css" rel="stylesheet" type="text/css">
+	<!-- 引入 icon font CSS -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
 </head>
 
 <body>
 	<div id="home" class="flex">
-		<div class="flex flex_COL">
-			<span id="currentCName">臺北市</span>
+		<div class="flex flex_COL gird">
+			<select id="City" class="form-control selectpicker show-tick" data-dropup-auto="false" data-live-search="true" data-size="5" data-style="btn-Custom"></select>
 			<span id="currentWx">多雲到晴</span>
 			<span id="currentTemp">21°C</span>
 		</div>
-		<div class="flex flex_COL">
+		<div class="flex flex_COL gird">
 			<table id="todayAndTomorrow">
 				<tr>
-					<th>
-						<select id="City"></select>
-					</th>
-					<th colspan="4">今明預報</th>
+					<th colspan="5">今明預報</th>
 				</tr>
 				<tr id="twoDayTimesTitle"><td>持續時間</td><td>氣溫</td><td>天氣現象</td><td>舒適度</td><td>降雨機率</td></tr>
 				<tr id="twoDayTimes01"></tr><tr id="twoDayTimes02"></tr><tr id="twoDayTimes03"></tr><tr id="twoDayTimes04"><tr id="twoDayTimes05"></tr>
