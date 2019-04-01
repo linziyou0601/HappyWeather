@@ -52,7 +52,7 @@ var getWeekData = function(){
         Data["records"]["locations"][0]["location"].map(function(getCity){
             //宣告暫存陣列
             var  Day = [], Date = [], Temp = [], Wx = [], Wx_n = [], startIndex, endIndex;//宣告暫存陣列
-            startIndex = getCity.weatherElement[0].time[0].startTime.substring(11,13) == "18" ? 1 : 0;
+            startIndex = getCity.weatherElement[0].time[0].endTime.substring(11,13) == "06" ? 1 : 0;
             endIndex = startIndex == 0 ? 14 : 15;
             //建立一週各時間之現象、現象代碼、溫度陣列
             for(var i = startIndex; i < endIndex; i+=2){
