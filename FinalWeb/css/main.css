@@ -3,22 +3,12 @@
 @import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
-body{margin: 0;}
+html, body{margin: 0; height:100%;}
 a, a:hover{text-decoration: none;}
-
-/*--flex水平及垂直版面設定--------------------------------------------------*/ 
-.flex{
-    display: flex;
-    align-items: center;    
-    justify-content: center;
-    flex: 1 1 auto; /*IE11*/
-}
-.flex_COL{flex-direction: column; height:calc(100vh - 90px);/*IE11*/}
-.gird{margin: 20px;}
 
 /*--主內容區--------------------------------------------------*/ 
 section, footer{
-    min-height: 100vh;
+    height: 100%;
     padding-top: 50px;
     text-align: center;
 }
@@ -28,7 +18,7 @@ section, footer{
     }
 /*--天氣區--------------------------------------------------*/ 
 #home{
-    background: url('../images/bg_home.jpg') no-repeat center center;
+    background: url('../images/bg_home.jpg') center;
     background-size: cover;
     color: #FFF;
 }
@@ -67,10 +57,9 @@ section, footer{
         box-shadow: 1px 1px 5px #222;
     }
     table{
-        width: 70vw;
+        width: 90%;
         margin: 0 auto;
         color: #FFF;
-        table-layout:fixed
     }
     table th{padding: 10px 15px; font: 300 15px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
     table td{
@@ -90,6 +79,7 @@ section, footer{
 footer{ background-color: #1e1f26; color: #FFF; }
     .ftitle{ font: 300 15px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
     .aboutMe{
+        width:300px;
         margin: 10px auto 40px auto;
         padding: 20px 30px;
         border: thin solid #CCC;
@@ -99,5 +89,4 @@ footer{ background-color: #1e1f26; color: #FFF; }
 
 @media screen and (orientation: portrait) {
     #currentTemp{font: 300 10vh/12vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
-    .flex{flex-direction: column;}
 }

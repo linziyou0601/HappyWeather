@@ -22,7 +22,6 @@
 
 <body data-target="#navbar-spy" data-spy="scroll">
 	<!--頁首區塊---------->
-	<header>
 		<!--導覽列-->
 		<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" id="navbar-spy">
 			<!--網站LOGO--><a class="navbar-brand" href="index.html">How's Weather</a>
@@ -40,55 +39,62 @@
 				</ul>
 			</div>
 		</nav>
-	</header>
 
 	<!--內容區塊---------->
 	<content>
-		<section id="home" class="flex">
-			<div class="flex flex_COL gird">
-				<select id="selectCity" class="selectpicker show-menu-arrow" data-width="fit"></select>
-				<span id="currentWx" class="weatherInfo">陰時多雲短暫陣雨</span>
-				<span id="currentTemp">17.40°C</span>
-				<span id="currentPoP" class="weatherInfo">降雨機率　50%</span>
-				<span id="currentHUMD" class="weatherInfo">濕　　度　75%</span>
-				<span id="current24R" class="weatherInfo">今日雨量　0mm</span>
-			</div>
-		</section>
-
-		<section id="section2" class="flex">
-			<div class="flex flex_COL gird">
-				<h1>今明預報</h1>
-				<div id="todayAndTomorrow" class="tableRound">
-					<table>
-						<tr id="twoDayTimesTitle"><th>持續時間</th><th>氣溫</th><th>天氣現象</th><th>舒適度</th><th>降雨機率</th></tr>
-						<tr id="twoDayTimes01"></tr><tr id="twoDayTimes02"></tr><tr id="twoDayTimes03"></tr><tr id="twoDayTimes04"><tr id="twoDayTimes05"></tr>
-					</table>
+		<section id="home" class="container-fluid">
+			<div class="row h-100">
+				<div class="col align-self-center">
+					<select id="selectCity" class="selectpicker show-menu-arrow" data-width="fit"></select><br/>
+					<span id="currentWx" class="weatherInfo">陰時多雲短暫陣雨</span><br/>
+					<span id="currentTemp">17.40°C</span><br/>
+					<span id="currentPoP" class="weatherInfo">降雨機率　50%</span><br/>
+					<span id="currentHUMD" class="weatherInfo">濕　　度　75%</span><br/>
+					<span id="current24R" class="weatherInfo">今日雨量　0mm</span><br/>
 				</div>
 			</div>
 		</section>
 
-		<section id="section3" class="flex">
-			<div class="flex flex_COL gird">
-				<h1>一週天氣</h1>
-				<div id="weekWeather" class="tableRound">
-					<table>
-						<tr id="weekWeatherTitle"><th>location</th><th>times1</th><th>times2</th><th>times3</th><th>times4</th><th>times5</th><th>times6</th><th>times7</th></tr>
-						<tr id="weekWeatherDay"><td colspan="8">morning weather</td></tr><tr id="weekWeatherNight"><td colspan="8">night weather</td></tr>
-					</table>
+		<section id="section2" class="container-fluid">
+			<div class="row h-100">
+				<div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 align-self-center">
+					<h1>今明預報</h1>
+					<div id="todayAndTomorrow" class="tableRound">
+						<table class="table-responsive-sm">
+							<tr id="twoDayTimesTitle"><th>持續時間</th><th>氣溫</th><th>天氣現象</th><th>舒適度</th><th>降雨機率</th></tr>
+							<tr id="twoDayTimes01"></tr><tr id="twoDayTimes02"></tr><tr id="twoDayTimes03"></tr><tr id="twoDayTimes04"><tr id="twoDayTimes05"></tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="section3" class="container-fluid">
+			<div class="row h-100">
+				<div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 align-self-center">
+					<h1>一週天氣</h1>
+					<div id="weekWeather" class="tableRound">
+						<table class="table-responsive-sm">
+							<tr id="weekWeatherTitle"><th>location</th><th>times1</th><th>times2</th><th>times3</th><th>times4</th><th>times5</th><th>times6</th><th>times7</th></tr>
+							<tr id="weekWeatherDay"><td colspan="8">morning weather</td></tr><tr id="weekWeatherNight"><td colspan="8">night weather</td></tr>
+						</table>
+					</div>
 				</div>
 			</div>
 		</section>
 	</content>
 	
 	<!--頁尾-->
-	<footer id="footer" class="flex">
-		<div class="flex flex_COL">
-			<h1>About</h1>
-			<div class="aboutMe">
-				<img src="images/editor.jpg" style="width: 50px; border-radius: 50%;"/>
-				<span>　B10723007　林子佑</span>
+	<footer id="footer" class="container-fluid">
+		<div class="row h-100">
+			<div class="col align-self-center">
+				<h1>About</h1>
+				<div class="aboutMe">
+					<img src="images/editor.jpg" style="width: 50px; border-radius: 50%;"/>
+					<span>　B10723007　林子佑</span>
+				</div>
+				<span class="ftitle">PayClass Web Copyright 2019 &copy; All Rights Reserved.<br/>本網頁建議使用 Chrome、Firefox、Edge 或 Safari 瀏覽器。</span>
 			</div>
-			<span class="ftitle">PayClass Web Copyright 2019 &copy; All Rights Reserved.<br/>本網頁建議使用 Chrome、Firefox、Edge 或 Safari 瀏覽器。</span>
 		</div>
 	</footer>
 	
