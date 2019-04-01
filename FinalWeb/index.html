@@ -57,10 +57,10 @@
 
 		<section id="section2" class="container-fluid">
 			<div class="row h-100">
-				<div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 align-self-center">
+				<div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 align-self-center">
 					<h1>今明預報</h1>
-					<div id="todayAndTomorrow" class="tableRound">
-						<table class="table-responsive-sm">
+					<div id="todayAndTomorrow" class="tableRound table-responsive">
+						<table class="text-nowrap">
 							<tr id="twoDayTimesTitle"><th>持續時間</th><th>氣溫</th><th>天氣現象</th><th>舒適度</th><th>降雨機率</th></tr>
 							<tr id="twoDayTimes01"></tr><tr id="twoDayTimes02"></tr><tr id="twoDayTimes03"></tr><tr id="twoDayTimes04"><tr id="twoDayTimes05"></tr>
 						</table>
@@ -71,10 +71,10 @@
 
 		<section id="section3" class="container-fluid">
 			<div class="row h-100">
-				<div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 align-self-center">
+				<div class="col-12 col-lg-8 offset-lg-2 align-self-center">
 					<h1>一週天氣</h1>
-					<div id="weekWeather" class="tableRound">
-						<table class="table-responsive-sm">
+					<div id="weekWeather" class="tableRound table-responsive">
+						<table class="text-nowrap">
 							<tr id="weekWeatherTitle"><th>location</th><th>times1</th><th>times2</th><th>times3</th><th>times4</th><th>times5</th><th>times6</th><th>times7</th></tr>
 							<tr id="weekWeatherDay"><td colspan="8">morning weather</td></tr><tr id="weekWeatherNight"><td colspan="8">night weather</td></tr>
 						</table>
@@ -87,13 +87,13 @@
 	<!--頁尾-->
 	<footer id="footer" class="container-fluid">
 		<div class="row h-100">
-			<div class="col align-self-center">
+			<div class="col-12 col-lg-8 offset-lg-2 align-self-center">
 				<h1>About</h1>
 				<div class="aboutMe">
 					<img src="images/editor.jpg" style="width: 50px; border-radius: 50%;"/>
 					<span>　B10723007　林子佑</span>
 				</div>
-				<span class="ftitle">PayClass Web Copyright 2019 &copy; All Rights Reserved.<br/>本網頁建議使用 Chrome、Firefox、Edge 或 Safari 瀏覽器。</span>
+				<span class="ftitle">How's Weather Copyright 2019 &copy; All Rights Reserved.</span>
 			</div>
 		</div>
 	</footer>
@@ -116,20 +116,21 @@
 			$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON",function(Data){
 				Data["records"]["location"].map(function(getCity){
 					//宣告暫存陣列
-					var  Day = [], Code = [], Temp = [], Wx = [], CI = [], PoP = [];//宣告暫存陣列
-					//建立時間、現象、降雨率、溫度陣列
+					var  Day = [], DayNight = [], Temp = [], Wx = [], Wx_n = [], CI = [], PoP = [];//宣告暫存陣列
+					//建立時間、早晚、現象、現象代碼、降雨率、溫度、舒適度陣列
 					for(var i = 0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
-						//暫存時間、現象、降雨率、溫度至陣列
 						Day[i] = getCity.weatherElement[0].time[i].startTime.substring(11,16) + ' - ' + getCity.weatherElement[0].time[i].endTime.substring(11,16);
 						Day[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i][0] + '<br/>' + Day[i];
-						Code[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i][1]
+						DayNight[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i][1]
 						Wx[i] = getCity.weatherElement[0].time[i].parameter.parameterName;
+						Wx_n[i] = getCity.weatherElement[0].time[i].parameter.parameterValue;
+						Wx_n[i] = Wx_n[i].length == 1 ? '0' + Wx_n[i] : Wx_n[i];
 						PoP[i] = getCity.weatherElement[1].time[i].parameter.parameterName + '%';
 						Temp[i] = getCity.weatherElement[2].time[i].parameter.parameterName + '°-' + getCity.weatherElement[4].time[i].parameter.parameterName + '°';
 						CI[i] = getCity.weatherElement[3].time[i].parameter.parameterName;
 					}
-					//縣市名、時間、現象、降雨率、溫度存入物件
-					var cityObj = {"Day": Day, "Code": Code, "Temp": Temp, "Wx": Wx, "CI": CI, "PoP": PoP};
+					//時間、早晚、現象、現象代碼、降雨率、溫度、舒適度存入物件
+					var cityObj = {"Day": Day, "DayNight": DayNight, "Temp": Temp, "Wx": Wx, "Wx_n": Wx_n, "CI": CI, "PoP": PoP};
 					//縣市物件存入天氣陣列
 					weatherObj[getCity.locationName]["todayAndTorromow"] = cityObj;
 				});
@@ -148,7 +149,7 @@
 		//測站天氣資料存入天氣物件function
 		var pushInWeatherObj = function (jsonDATA){
 			jsonDATA["records"]["location"].map(function(getCity){
-				//建立測站、縣市、鄉鎮、溫度、濕度、時雨量資料； 暫存縣市名稱
+				//暫存縣市名稱，並建立測站、縣市、鄉鎮、溫度、濕度、時雨量資料
 				var City = getCity["parameter"][0]["parameterValue"];
 				weatherObj[City]["locName"] = getCity["locationName"];
 				weatherObj[City]["locTown"] = getCity["parameter"][2]["parameterValue"];
@@ -178,7 +179,7 @@
 				var Data = weatherObj[cityName]["todayAndTorromow"];
 				var nowTime = '<td>' + Data["Day"][i].substring(0,4) + '</td>';
 				nowTime += '<td>' + Data["Temp"][i] + '</td>';
-				nowTime += '<td><img width="60px" src="images/weatherIcon/' + Data["Code"][i] + '/' + weatherIcon[Data["Wx"][i]] + '.svg" title="' + Data["Wx"][i] + '"/></td>';
+				nowTime += '<td><img width="60px" src="images/weatherIcon/' + Data["DayNight"][i] + '/' + Data["Wx_n"][i] + '.svg" title="' + Data["Wx"][i] + '"/></td>';
 				nowTime += '<td>' + Data["CI"][i] + '</td>';
 				nowTime += '<td>' + Data["PoP"][i] + '</td>';
 				//放至<tr>裡

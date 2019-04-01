@@ -3,76 +3,62 @@
 @import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
-html, body{margin: 0; height:100%;}
+html, body{
+    height:100vh;
+    margin: 0;
+    background: url('../images/bg_home.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
 a, a:hover{text-decoration: none;}
 
 /*--主內容區--------------------------------------------------*/ 
 section, footer{
-    height: 100%;
+    height:100vh;
     padding-top: 50px;
     text-align: center;
+    color: #FFF;
 }
     h1{
         margin: 20px auto;
-        font: 300 40px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
+        font: 300 6vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
 /*--天氣區--------------------------------------------------*/ 
-#home{
-    background: url('../images/bg_home.jpg') center;
-    background-size: cover;
+/*--位置選擇--*/
+.bootstrap-select .btn {
+    background-color: transparent;
+    border: none;
+    font: 300 6vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     color: #FFF;
 }
-    /*--位置選擇--*/
-    .bootstrap-select .btn {
-        background-color: transparent;
-        border: none;
-        font: 300 45px/60px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
-        color: #FFF;
-    }
-    .bootstrap-select .btn[aria-expanded="true"]  {
-        background-color: transparent;
-        color: #FFF;
-    }
-    .dropdown-toggle::after {
-        padding-left:20px;
-        border: none;
-        font: 900 25px "Font Awesome 5 Free";
-        content: "\f107";
-    }
-    /*--目前天氣樣式--*/ 
-    #currentTemp{font: 300 8vw/10vw 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
-    .weatherInfo{font: 300 18px/35px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+.bootstrap-select .btn[aria-expanded="true"]  {background-color: transparent;color: #FFF;}
+.dropdown-toggle::after {
+    padding-left:20px;
+    border: none;
+    font: 900 25px "Font Awesome 5 Free";
+    content: "\f107";
+}
+/*--目前天氣樣式--*/ 
+#currentTemp{font: 300 16vh/20vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+.weatherInfo{font: 300 2.5vh/6vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
 
-/*--區塊二--------------------------------------------------*/ 
-#section2{
-    background: url('../images/bg_home.jpg') no-repeat center center;
-    background-size: cover;
+/*--表格樣式--*/ 
+.tableRound{
+    background-color:rgba(0,0,0,0.6);
+    border: thin solid rgba(180,180,180,0.3);
+    padding: 5px 20px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #222;
+}
+table{
+    width: 90%;
+    margin: 0 auto;
     color: #FFF;
 }
-    /*--天氣表格樣式--*/ 
-    .tableRound{
-        background-color:rgba(245,245,245,0.3);
-        padding: 5px 20px;
-        border-radius: 10px;
-        box-shadow: 1px 1px 5px #222;
-    }
-    table{
-        width: 90%;
-        margin: 0 auto;
-        color: #FFF;
-    }
-    table th{padding: 10px 15px; font: 300 15px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
-    table td{
-        padding: 15px;
-        border-top:thin solid rgba(20,20,20,0.5);
-        font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
-    }
-
-/*--區塊三--------------------------------------------------*/ 
-#section3{
-    background: url('../images/bg_home.jpg') no-repeat center center;
-    background-size: cover;
-    color: #FFF;
+table th{padding: 10px 15px; font: 300 15px/25px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+table td{
+    padding: 15px;
+    border-top:thin solid rgba(255,255,255,0.1);
+    font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
 }
 
 /*--footer其餘樣式--------------------------------------------------*/ 
@@ -87,6 +73,9 @@ footer{ background-color: #1e1f26; color: #FFF; }
         font: 400 18px/30px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     }
 
-@media screen and (orientation: portrait) {
+@media (max-width: 576px) {
+    h1{font: 300 5vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    .bootstrap-select .btn{font: 300 5vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
     #currentTemp{font: 300 10vh/12vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    .weatherInfo{font: 300 2vh/4vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
 }

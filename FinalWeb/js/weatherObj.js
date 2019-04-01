@@ -13,7 +13,7 @@ var weatherObj = {
     "金門縣":{Cname: "金門縣", Ename: "Kinmen_County"},"連江縣":{Cname: "連江縣", Ename: "Lienchiang_County"}
 };
 var dayTimeDescript = {'18:00':[["今日白天 ","day"],["今晚明晨 ","night"],["明日白天 ","day"]],'06:00':[["今晚明晨 ","night"],["明日白天 ","day"],["明日晚上 ","night"]]};
-var weatherIcon = {
+/* var weatherIcon = {
     "晴天":"01",
     "晴時多雲":"02",
     "多雲時晴":"03",
@@ -367,4 +367,4 @@ var weatherIcon = {
     "下雪":"42",
     "積冰":"42",
     "暴風雪":"42"
-};
+}; */
