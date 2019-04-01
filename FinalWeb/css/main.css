@@ -74,8 +74,7 @@ footer{ background-color: #1e1f26; color: #FFF; }
     }
 
 @media (max-width: 576px) {
-    h1{font: 300 5vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
-    .bootstrap-select .btn{font: 300 5vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
-    #currentTemp{font: 300 10vh/12vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    h1, .bootstrap-select .btn{font: 300 5vh/12vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
+    #currentTemp{font: 300 10vh/15vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
     .weatherInfo{font: 300 2vh/4vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
 }
