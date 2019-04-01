@@ -6,7 +6,8 @@
 html, body{
     height:100vh;
     margin: 0;
-    background: url('../images/bg_home.jpg') no-repeat center center fixed;
+    background: url('../images/bg_home.jpg') no-repeat center center;
+    background-attachment:  fixed;
     background-size: cover;
 }
 a, a:hover{text-decoration: none;}
@@ -30,7 +31,7 @@ section, footer{
     font: 300 6vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     color: #FFF;
 }
-.bootstrap-select .btn[aria-expanded="true"]  {background-color: transparent;color: #FFF;}
+.bootstrap-select .btn[aria-expanded="true"]  {background-color: transparent; color: #FFF;}
 .dropdown-toggle::after {
     padding-left:20px;
     border: none;
