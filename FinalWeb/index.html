@@ -1,19 +1,18 @@
 <!doctype html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<title>How's Weather</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- 引入 基本JQuery及popper -->
 	<script src="js/jquery-3.3.1.min.js" ></script>
-	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap/popper.min.js"></script>
 	<!-- 引入 基本Bootstrap及Bootstrap Select -->
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/bootstrap-select.min.css">
-	<script src="js/bootstrap-select.min.js"></script>
-	<script src="js/defaults-zh_TW.min.js"></script>
+	<script src="js/bootstrap/bootstrap-select.min.js"></script>
+	<script src="js/bootstrap/defaults-zh_TW.min.js"></script>
 	<!-- 引入 主要css樣式 -->
 	<link href="css/main.css" rel="stylesheet" type="text/css">
 	<!-- 引入 icon font CSS -->
@@ -61,8 +60,8 @@
 					<h1>今明預報</h1>
 					<div id="todayAndTomorrow" class="tableRound table-responsive">
 						<table class="text-nowrap">
-							<tr id="twoDayTimesTitle"><th>持續時間</th><th>氣溫</th><th>天氣現象</th><th>舒適度</th><th>降雨機率</th></tr>
-							<tr id="twoDayTimes01"></tr><tr id="twoDayTimes02"></tr><tr id="twoDayTimes03"></tr><tr id="twoDayTimes04"><tr id="twoDayTimes05"></tr>
+							<tr id="twoDaysTimesTitle"><th id="twoDaysCity"></th><th>氣溫</th><th>天氣現象</th><th>舒適度</th><th>降雨機率</th></tr>
+							<tr id="twoDaysTimes01"></tr><tr id="twoDaysTimes02"></tr><tr id="twoDaysTimes03"></tr><tr id="twoDaysTimes04"><tr id="twoDaysTimes05"></tr>
 						</table>
 					</div>
 				</div>
@@ -75,8 +74,8 @@
 					<h1>一週天氣</h1>
 					<div id="weekWeather" class="tableRound table-responsive">
 						<table class="text-nowrap">
-							<tr id="weekWeatherTitle"><th>location</th><th>times1</th><th>times2</th><th>times3</th><th>times4</th><th>times5</th><th>times6</th><th>times7</th></tr>
-							<tr id="weekWeatherDay"><td colspan="8">morning weather</td></tr><tr id="weekWeatherNight"><td colspan="8">night weather</td></tr>
+							<tr id="weekWeatherTitle"><th id="weekCity"></th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th></tr>
+							<tr id="weekWeatherDay"></tr><tr id="weekWeatherNight"></tr>
 						</table>
 					</div>
 				</div>
@@ -99,92 +98,38 @@
 	</footer>
 	
 
-	<!--JavaScript、JQuery---------->
-	<!--將天氣物件變數傳入-->
-	<script src="js/weatherObj.js"></script>
+	<!--避免本頁面過冗長，以下三個JS檔獨立出來---------->
+	<script src="js/weather/weatherObj.js"></script> <!--天氣物件變數-->
+	<script src="js/weather/weatherGetJSON.js"></script> <!--天氣資料取得函式-->
+	<script src="js/weather/changeWeather.js"></script> <!--天氣資料更改函式-->
 	
+	<!--本頁面JavaScript、JQuery---------->
 	<script>
+		//html 載入時執行
+		$(function(){	
+			$.ajaxSettings.async = false;
+			getTwoDaysData(); //取得36小時天氣資料
+			getCurrentData(); //取得局屬測站天氣資料及自動測站天氣資料
+			getWeekData(); //取得一週天氣資料
+			//--------------------載入後改變初始選取資料--------------------
+			editWeatherData($('#selectCity').val("臺北市").selectpicker('refresh').val());
+		});
+
 		//建立下拉選單
 		Object.keys(weatherObj).map(function(cityName){
 			$('#selectCity').append('<option value="'+ cityName  + '">' + cityName + '</option>');
 		})
 
-		//html 載入時執行
-		$(function(){	
-			$.ajaxSettings.async = false
-			//--------------------取得36小時天氣資料--------------------
-			$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON",function(Data){
-				Data["records"]["location"].map(function(getCity){
-					//宣告暫存陣列
-					var  Day = [], DayNight = [], Temp = [], Wx = [], Wx_n = [], CI = [], PoP = [];//宣告暫存陣列
-					//建立時間、早晚、現象、現象代碼、降雨率、溫度、舒適度陣列
-					for(var i = 0; i < Object.keys(getCity.weatherElement[0].time).length; i++){
-						Day[i] = getCity.weatherElement[0].time[i].startTime.substring(11,16) + ' - ' + getCity.weatherElement[0].time[i].endTime.substring(11,16);
-						Day[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i][0] + '<br/>' + Day[i];
-						DayNight[i] = dayTimeDescript[Day[0].substring(Day[0].length - 5)][i][1]
-						Wx[i] = getCity.weatherElement[0].time[i].parameter.parameterName;
-						Wx_n[i] = getCity.weatherElement[0].time[i].parameter.parameterValue;
-						Wx_n[i] = Wx_n[i].length == 1 ? '0' + Wx_n[i] : Wx_n[i];
-						PoP[i] = getCity.weatherElement[1].time[i].parameter.parameterName + '%';
-						Temp[i] = getCity.weatherElement[2].time[i].parameter.parameterName + '°-' + getCity.weatherElement[4].time[i].parameter.parameterName + '°';
-						CI[i] = getCity.weatherElement[3].time[i].parameter.parameterName;
-					}
-					//時間、早晚、現象、現象代碼、降雨率、溫度、舒適度存入物件
-					var cityObj = {"Day": Day, "DayNight": DayNight, "Temp": Temp, "Wx": Wx, "Wx_n": Wx_n, "CI": CI, "PoP": PoP};
-					//縣市物件存入天氣陣列
-					weatherObj[getCity.locationName]["todayAndTorromow"] = cityObj;
-				});
-			});
-			//--------------------取得局屬測站天氣資料及自動測站天氣資料--------------------
-			$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&format=JSON&locationName=%E5%9F%BA%E9%9A%86,%E8%87%BA%E5%8C%97,%E6%9D%BF%E6%A9%8B,%E6%96%B0%E7%AB%B9,%E8%87%BA%E4%B8%AD,%E5%BD%B0%E5%B8%AB%E5%A4%A7,%E5%98%89%E7%BE%A9,%E5%8D%97%E5%8D%80%E4%B8%AD%E5%BF%83,%E9%AB%98%E9%9B%84,%E5%AE%9C%E8%98%AD,%E8%8A%B1%E8%93%AE,%E8%87%BA%E6%9D%B1,%E6%BE%8E%E6%B9%96,%E9%87%91%E9%96%80,%E9%A6%AC%E7%A5%96&elementName=TEMP,HUMD,24R", function(Data){
-				pushInWeatherObj(Data);
-			});
-			$.getJSON("https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0001-001?Authorization=CWB-268DE0E2-66E8-4AE9-A0C3-B06F7EBB5E7A&locationName=%E6%A1%83%E5%9C%92,%E6%96%B0%E7%AB%B9%E5%B8%82%E6%9D%B1%E5%8D%80,%E8%8B%97%E6%A0%97,%E5%8D%97%E6%8A%95,%E6%96%97%E5%85%AD,%E5%A4%AA%E4%BF%9D,%E5%B1%8F%E6%9D%B1&elementName=TEMP,HUMD,H_24R", function(Data){
-				pushInWeatherObj(Data);
-			});
-			//--------------------載入後改變初始選取資料--------------------
-			editWeatherData($('#selectCity').val("臺北市").selectpicker('refresh').val());
-		});
-		
-		//測站天氣資料存入天氣物件function
-		var pushInWeatherObj = function (jsonDATA){
-			jsonDATA["records"]["location"].map(function(getCity){
-				//暫存縣市名稱，並建立測站、縣市、鄉鎮、溫度、濕度、時雨量資料
-				var City = getCity["parameter"][0]["parameterValue"];
-				weatherObj[City]["locName"] = getCity["locationName"];
-				weatherObj[City]["locTown"] = getCity["parameter"][2]["parameterValue"];
-				weatherObj[City]["currentTemp"] = getCity["weatherElement"][0]["elementValue"].substring(0,4) + '°C';
-				weatherObj[City]["currentHUMD"] = getCity["weatherElement"][1]["elementValue"].substring(2) + '%';
-				weatherObj[City]["current24R"] = getCity["weatherElement"][2]["elementValue"] + 'mm';
-				weatherObj[City]["currentWx"] = weatherObj[City]["todayAndTorromow"]["Wx"][0];
-				weatherObj[City]["currentPoP"] = weatherObj[City]["todayAndTorromow"]["PoP"][0];
-			});
-		};
-
 		//下拉選單改變時
 		$('#selectCity').on('changed.bs.select', function() {
 			editWeatherData(this.value);
 		});
+
 		//更改今明預報及目前天氣function
 		var editWeatherData = function (cityName){ 
-			//改目前天氣
-			$('#currentWx').html(weatherObj[cityName]["currentWx"]);
-			$('#currentTemp').html(weatherObj[cityName]["currentTemp"]);
-			$('#currentPoP').html('降雨機率　' + weatherObj[cityName]["currentPoP"]);
-			$('#currentHUMD').html('濕　　度　' + weatherObj[cityName]["currentHUMD"]);
-			$('#current24R').html('今日雨量　' + weatherObj[cityName]["current24R"]);
-			//改今明預報
-			for(var i = 0; i < (weatherObj[cityName]["todayAndTorromow"]["Day"][i]).length; i++){
-				//依時間將天氣資料帶入
-				var Data = weatherObj[cityName]["todayAndTorromow"];
-				var nowTime = '<td>' + Data["Day"][i].substring(0,4) + '</td>';
-				nowTime += '<td>' + Data["Temp"][i] + '</td>';
-				nowTime += '<td><img width="60px" src="images/weatherIcon/' + Data["DayNight"][i] + '/' + Data["Wx_n"][i] + '.svg" title="' + Data["Wx"][i] + '"/></td>';
-				nowTime += '<td>' + Data["CI"][i] + '</td>';
-				nowTime += '<td>' + Data["PoP"][i] + '</td>';
-				//放至<tr>裡
-				$('#twoDayTimes0' + (i+1)).html(nowTime);
-			};
+			changeCurrent(cityName); //改目前天氣
+			changeTwoDays(cityName); //改今明預報
+			changeWeek(cityName); //改一週預報
 		};
 
 		//超連結切換頁面時會用滑的，而不是直接跳過去
