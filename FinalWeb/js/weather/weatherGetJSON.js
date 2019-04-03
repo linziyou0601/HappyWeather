@@ -83,7 +83,8 @@ var getThreeHoursData = function(){
         Data["records"]["locations"][0]["location"].map(function(getCity){
             //宣告暫存陣列
             var DayObj = [], Index = -1, startIndex, Today = new Date();//宣告暫存陣列
-            startIndex = Today.getHours() > parseInt(getCity.weatherElement[0].time[1].startTime.substring(11,13)) ? 1 : 0;
+            firstDataHour = parseInt(getCity.weatherElement[0].time[0].startTime.substring(11,13));
+            startIndex = Today.getHours() > (firstDataHour == 0 ? 24 : firstDataHour) ? 1 : 0;
             //建立一週各時間之現象、現象代碼、溫度陣列
             for(var i = startIndex; i < startIndex + 17; i++){
                 var DateStr = getCity.weatherElement[0].time[i].startTime.substring(5,10).replace('-','/');
@@ -92,7 +93,7 @@ var getThreeHoursData = function(){
                     DayObj[++Index] = {"Date": DateStr, "Hour": []};
                 //建立各「小時」物件陣列（依日期Index放入）
                 DayObj[Index]["Hour"].push({
-                    "Hour": getCity.weatherElement[0].time[i].startTime.substring(11,16),
+                    "Hour": parseInt(getCity.weatherElement[0].time[i].startTime.substring(11,13)) + '時',
                     "Wx": getCity.weatherElement[0].time[i].elementValue[0].value,
                     "Wx_n": getCity.weatherElement[0].time[i].elementValue[1].value,
                     "DayNight": getCity.weatherElement[0].time[i].startTime.substring(11,13) >= '12' ? 'night' : 'day',
