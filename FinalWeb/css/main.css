@@ -5,7 +5,6 @@
 
 html{height:100vh;}
 body{
-    height:100vh;
     background: url('../images/bg_home1.jpg') no-repeat center center;
     background-attachment:  fixed;
     background-size: cover;
