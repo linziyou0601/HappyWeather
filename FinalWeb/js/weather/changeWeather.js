@@ -2,9 +2,9 @@
 var changeCurrent = function(cityName){
     $('#currentWx').html(weatherObj[cityName]["currentWx"]);
     $('#currentTemp').html(weatherObj[cityName]["currentTemp"]);
-    $('#currentPoP').html('降雨機率　' + weatherObj[cityName]["currentPoP"]);
-    $('#currentHUMD').html('濕　　度　' + weatherObj[cityName]["currentHUMD"]);
-    $('#current24R').html('今日雨量　' + weatherObj[cityName]["current24R"]);
+    $('#currentPoP').html(weatherObj[cityName]["currentPoP"]);
+    $('#currentHUMD').html(weatherObj[cityName]["currentHUMD"]);
+    $('#current24R').html(weatherObj[cityName]["current24R"]);
 };
 //----------改今明預報----------
 var changeTwoDays = function(cityName){
@@ -37,4 +37,25 @@ var changeWeek = function(cityName){
     $('#weekWeatherTitle').html(dayTitle);
     $('#weekWeatherDay').html(dayData);
     $('#weekWeatherNight').html(nightData);
+};
+//----------改逐三小時----------
+var changeThreeHours = function(cityName){
+    var Data = weatherObj[cityName]["threeHours"]
+    var DayTitle = '<th></th>', HourTitle = '<th><i class="fas fa-calendar-alt"></i></th>';
+    var TR1 = '<td><i class="fas fa-umbrella"></i></td>', TR2 = '<td><i class="fas fa-thermometer-three-quarters"></i></td>';
+    for(var i = 0; i < Data.length; i++){
+        DayTitle += '<th colspan="' + Data[i]["Hour"].length + '">' + Data[i]["Date"] + '</th>';
+        for(var j = 0; j < Data[i]["Hour"].length; j++){
+            //依時間將天氣資料帶入
+            HourTitle += '<th>' + Data[i]["Hour"][j]["Hour"] + '</th>';
+            TR1 += '<td>' + Data[i]["Hour"][j]["PoP"] + '</td>';
+            TR2 += '<td><img width="30px" src="images/weatherIcon/' + Data[i]["Hour"][j]["DayNight"] + '/' + Data[i]["Hour"][j]["Wx_n"] + '.svg" title="' + Data[i]["Hour"][j]["Wx"] + '"/><br/>';
+            TR2 += Data[i]["Hour"][j]["Temp"] + '</td>';
+        }
+    };
+    //放至<tr>裡
+    $('#threeHoursDayTitle').html(DayTitle);
+    $('#threeHoursHourTitle').html(HourTitle);
+    $('#threeHours01').html(TR1);
+    $('#threeHours02').html(TR2);
 };
