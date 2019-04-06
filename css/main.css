@@ -54,6 +54,7 @@ section, footer{
 #home{
     background: url("../images/Home_Background.jpg") no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
     color: #fff;
 }
     /*首頁Title*/
@@ -83,6 +84,7 @@ section, footer{
 #s3_1{
     background: url("../images/s3_1_Background.jpg") no-repeat center center;
     background-size: cover;
+    background-attachment: fixed;
     color: #FFF;
 }
     /*PayType表格、參考文獻*/
