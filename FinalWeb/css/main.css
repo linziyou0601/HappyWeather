@@ -4,11 +4,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
 html{height:100vh;}
-body{background-attachment:  fixed; background-size: cover; background-repeat: no-repeat; background-position: center center;}
-    /*--背景圖改變用class--*/
-    .bodyBG0{background-image: url('../images/bg_home0.jpg');}.bodyBG1{background-image: url('../images/bg_home1.jpg');}
-    .bodyBG2{background-image: url('../images/bg_home2.jpg');}.bodyBG3{background-image: url('../images/bg_home3.jpg');}
-    .bodyBG4{background-image: url('../images/bg_home4.jpg');}.bodyBG5{background-image: url('../images/bg_home5.jpg');}
+body{background-attachment: fixed; background-size: cover; background-repeat: no-repeat; background-position: center center;}
 a, a:hover{text-decoration: none;}
 
 /*-- -webkit-架構瀏覽器的ScrollingBar美化--*/

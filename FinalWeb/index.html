@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 
-<body data-target="#navbar-spy" data-spy="scroll" class="bodyBG0"> 
+<body data-target="#navbar-spy" data-spy="scroll" style="background-image: url('images/bg_home0.jpg');"> 
 	<!--頁首區塊---------->
 		<!--導覽列-->
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="navbar-spy">
@@ -235,9 +235,7 @@
 
 		//改變背景圖
 		var changeBG = function (val){
-			var bodyClass = $('body').attr('class').split(' ');
-			var bodyBgClass = bodyClass[0][0] == 'b' ? bodyClass[0] : bodyClass[1];
-			$('body').removeClass(bodyBgClass).addClass('bodyBG' + val);
+			$('body').css("background-image","url('images/bg_home" + val + ".jpg')");
 		}
 	</script>
 </body>
