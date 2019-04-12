@@ -42,7 +42,7 @@ var pushInWeatherObj = function (jsonDATA){
         weatherObj[City]["locTown"] = getCity["parameter"][2]["parameterValue"];
         weatherObj[City]["currentTemp"] = getCity["weatherElement"][0]["elementValue"].substring(0,4) + '°C';
         weatherObj[City]["currentHUMD"] = getCity["weatherElement"][1]["elementValue"].substring(2) + '%';
-        weatherObj[City]["current24R"] = getCity["weatherElement"][2]["elementValue"] + 'mm';
+        weatherObj[City]["current24R"] = (getCity["weatherElement"][2]["elementValue"] == '-99' ? '0.00' : Number(getCity["weatherElement"][2]["elementValue"]).toFixed(2)) + 'mm';
         weatherObj[City]["currentWx"] = weatherObj[City]["twoDays"]["Wx"][0];
         weatherObj[City]["currentPoP"] = weatherObj[City]["twoDays"]["PoP"][0];
     });
@@ -83,7 +83,7 @@ var getThreeHoursData = function(){
         Data["records"]["locations"][0]["location"].map(function(getCity){
             //宣告暫存陣列
             var DayObj = [], Index = -1, startIndex, Today = new Date();//宣告暫存陣列
-            firstDataHour = parseInt(getCity.weatherElement[0].time[0].startTime.substring(11,13));
+            firstDataHour = Number(getCity.weatherElement[0].time[0].startTime.substring(11,13));
             startIndex = Today.getHours() > (firstDataHour == 0 ? 24 : firstDataHour) ? 1 : 0;
             //建立一週各時間之現象、現象代碼、溫度陣列
             for(var i = startIndex; i < startIndex + 17; i++){
@@ -93,7 +93,7 @@ var getThreeHoursData = function(){
                     DayObj[++Index] = {"Date": DateStr, "Hour": []};
                 //建立各「小時」物件陣列（依日期Index放入）
                 DayObj[Index]["Hour"].push({
-                    "Hour": parseInt(getCity.weatherElement[0].time[i].startTime.substring(11,13)) + '時',
+                    "Hour": Number(getCity.weatherElement[0].time[i].startTime.substring(11,13)) + '時',
                     "Wx": getCity.weatherElement[0].time[i].elementValue[0].value,
                     "Wx_n": getCity.weatherElement[0].time[i].elementValue[1].value,
                     "DayNight": getCity.weatherElement[0].time[i].startTime.substring(11,13) >= '12' ? 'night' : 'day',

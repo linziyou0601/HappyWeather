@@ -4,20 +4,17 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i');
 
 html{height:100vh;}
-body{
-    background: url('../images/bg_home1.jpg') no-repeat center center;
-    background-attachment:  fixed;
-    background-size: cover;
-}
+body{background-attachment:  fixed; background-size: cover; background-repeat: no-repeat; background-position: center center;}
+    /*--背景圖改變用class--*/
+    .bodyBG0{background-image: url('../images/bg_home0.jpg');}.bodyBG1{background-image: url('../images/bg_home1.jpg');}
+    .bodyBG2{background-image: url('../images/bg_home2.jpg');}.bodyBG3{background-image: url('../images/bg_home3.jpg');}
+    .bodyBG4{background-image: url('../images/bg_home4.jpg');}.bodyBG5{background-image: url('../images/bg_home5.jpg');}
 a, a:hover{text-decoration: none;}
 
-/*-webkit-架構瀏覽器的ScrollingBar美化*/
+/*-- -webkit-架構瀏覽器的ScrollingBar美化--*/
 .tableRound::-webkit-scrollbar {height: 6px;}
 .tableRound::-webkit-scrollbar-button {}
-.tableRound::-webkit-scrollbar-thumb {
-    border-radius: 3px;
-    background-color: rgba(150,150,150,0.3);
-}
+.tableRound::-webkit-scrollbar-thumb {border-radius: 3px; background-color: rgba(150,150,150,0.3);}
 
 /*--主內容區--------------------------------------------------*/ 
 section{
@@ -26,10 +23,7 @@ section{
     text-align: center;
     color: #FFF;
 }
-    h1{
-        margin: 20px auto;
-        font: 300 6vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
-    }
+    h1{margin: 20px auto; font: 300 6vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";}
 /*--天氣區--------------------------------------------------*/ 
 /*--位置選擇--*/
 .bootstrap-select .btn {
@@ -37,10 +31,8 @@ section{
     border: none;
     font: 300 6vh/10vh 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
     color: #FFF;
-}select:focus {
-    width: auto;
-    position: relative;
 }
+select:focus {width: auto; position: relative;}
 .bootstrap-select .btn[aria-expanded="true"]  {background-color: transparent; color: #FFF;}
 .dropdown-toggle::after {
     padding-left:20px;
@@ -71,6 +63,9 @@ table td{
     border-top:thin solid rgba(255,255,255,0.1);
     font: 300 15px 'Open Sans', 'Noto Sans TC', arial, "微軟正黑體";
 }
+
+/*--更換背景的小圖樣式--*/
+#Background img{width: 100%; margin: 5% auto;}
 
 /*--footer其餘樣式--------------------------------------------------*/ 
 footer{ 

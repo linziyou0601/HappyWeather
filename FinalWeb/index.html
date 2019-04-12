@@ -19,10 +19,10 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 
-<body data-target="#navbar-spy" data-spy="scroll"> 
+<body data-target="#navbar-spy" data-spy="scroll" class="bodyBG0"> 
 	<!--頁首區塊---------->
 		<!--導覽列-->
-		<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" id="navbar-spy">
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="navbar-spy">
 			<!--網站LOGO--><a class="navbar-brand" href="index.html">How's Weather</a>
 			<!--縮小時漢堡鈕-->
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -37,6 +37,11 @@
 					<li class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#Feedback">意見回饋</a></li>
 					<li class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#AboutUS">關於</a></li>
 				</ul>
+				<div>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#Background"><i class="fas fa-paint-roller"></i> 背景</a></li>
+					</ul>
+				</div>
 			</div>
 		</nav>
 
@@ -159,6 +164,29 @@
 			</div>
 		</div>
 	</div>
+	<!-- 更改背景 -->
+	<div class="modal" id="Background" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLongTitle">背景選擇</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row justify-content-center">
+						<div class="col-6 col-md-4"><a href="javascript:viod(0)" onclick="changeBG(0)"><img src="images/bg_home0.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:viod(0)" onclick="changeBG(1)"><img src="images/bg_home1.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:viod(0)" onclick="changeBG(2)"><img src="images/bg_home2.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:viod(0)" onclick="changeBG(3)"><img src="images/bg_home3.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:viod(0)" onclick="changeBG(4)"><img src="images/bg_home4.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:viod(0)" onclick="changeBG(5)"><img src="images/bg_home5.jpg"/></a></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -204,6 +232,13 @@
 			//使用jQuery的animate()加平滑滾動，數字800代表滾動到指定區域(hash)所需的毫秒數
 			$('html, body').animate({ scrollTop: $(hash).offset().top }, 800);
 		});
+
+		//改變背景圖
+		var changeBG = function (val){
+			var bodyClass = $('body').attr('class').split(' ');
+			var bodyBgClass = bodyClass[0][0] == 'b' ? bodyClass[0] : bodyClass[1];
+			$('body').removeClass(bodyBgClass).addClass('bodyBG' + val);
+		}
 	</script>
 </body>
 </html>
