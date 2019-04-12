@@ -84,7 +84,7 @@ var getThreeHoursData = function(){
             //宣告暫存陣列
             var DayObj = [], Index = -1, startIndex, Today = new Date();//宣告暫存陣列
             firstDataHour = Number(getCity.weatherElement[0].time[0].startTime.substring(11,13));
-            startIndex = Today.getHours() > (firstDataHour == 0 ? 24 : firstDataHour) ? 1 : 0;
+            startIndex = (Today.getHours() == 0 ? 24 : Today.getHours()) > (firstDataHour == 0 ? 24 : firstDataHour) ? 1 : 0;
             //建立一週各時間之現象、現象代碼、溫度陣列
             for(var i = startIndex; i < startIndex + 17; i++){
                 var DateStr = getCity.weatherElement[0].time[i].startTime.substring(5,10).replace('-','/');
