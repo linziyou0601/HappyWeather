@@ -40,7 +40,7 @@ var pushInWeatherObj = function (jsonDATA){
         var City = getCity["parameter"][0]["parameterValue"];
         weatherObj[City]["locName"] = getCity["locationName"];
         weatherObj[City]["locTown"] = getCity["parameter"][2]["parameterValue"];
-        weatherObj[City]["currentTemp"] = getCity["weatherElement"][0]["elementValue"].substring(0,4) + '°C';
+        weatherObj[City]["currentTemp"] = (getCity["weatherElement"][0]["elementValue"].substring(0,4) == '-99' ? '未知' : getCity["weatherElement"][0]["elementValue"].substring(0,4)) + '°C';
         weatherObj[City]["currentHUMD"] = getCity["weatherElement"][1]["elementValue"].substring(2) + '%';
         weatherObj[City]["current24R"] = (getCity["weatherElement"][2]["elementValue"] == '-99' ? '0.00' : Number(getCity["weatherElement"][2]["elementValue"]).toFixed(2)) + 'mm';
         weatherObj[City]["currentWx"] = weatherObj[City]["twoDays"]["Wx"][0];
