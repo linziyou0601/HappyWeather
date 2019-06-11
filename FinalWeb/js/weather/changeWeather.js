@@ -41,8 +41,8 @@ var changeWeek = function(cityName){
 //----------改逐三小時----------
 var changeThreeHours = function(cityName){
     var Data = weatherObj[cityName]["threeHours"]
-    var DayTitle = '<th></th>', HourTitle = '<th><i class="fas fa-calendar-alt"></i></th>';
-    var TR1 = '<td><i class="fas fa-umbrella"></i></td>', TR2 = '<td><i class="fas fa-thermometer-three-quarters"></i></td>';
+    var DayTitle = '<th></th>', HourTitle = '<th><i class="fas fa-calendar-alt" title="時間"></i></th>';
+    var TR1 = '<td><i class="fas fa-umbrella" title="降雨機率"></i></td>', TR2 = '<td><i class="fas fa-thermometer-three-quarters" title="天氣狀況"></i></td>';
     for(var i = 0; i < Data.length; i++){
         DayTitle += '<th colspan="' + Data[i]["Hour"].length + '">' + Data[i]["Date"] + '</th>';
         for(var j = 0; j < Data[i]["Hour"].length; j++){
