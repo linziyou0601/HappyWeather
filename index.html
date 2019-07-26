@@ -1,171 +1,234 @@
 <!doctype html>
 <html>
-
 <head>
 	<meta charset="utf-8">
-	<title>Pay的小教室 - B10723007</title>
-	<script src="js/jquery-3.3.1.min.js"></script><!--嵌入基本的JQuery套件-->
-	<script src="js/jquery.rwdImageMaps.js"></script><!--嵌入rwdImageMaps的JQ套件，讓影像地圖RWD縮放時不跑位-->
-	<link href="css/main.css" rel="stylesheet" type="text/css"><!--主css樣式表-->
+	<title>HAPPY Weather</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 加入favicon -->
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	<!-- 引入 基本JQuery及popper -->
+	<script src="js/jquery-3.3.1.min.js" ></script>
+	<script src="js/bootstrap/popper.min.js"></script>
+	<!-- 引入 基本Bootstrap及Bootstrap Select -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap-select.min.css">
+	<script src="js/bootstrap/bootstrap-select.min.js"></script>
+	<script src="js/bootstrap/defaults-zh_TW.min.js"></script>
+	<!-- 引入 主要css樣式 -->
+	<link href="css/main.css" rel="stylesheet" type="text/css">
+	<!-- 引入 icon font CSS -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 </head>
 
-<body>
-	<!--頁首 -->
-	<header class="flex">
-		<!--導覽列 -->
-		<nav>
-			<a class="brand" href="#home">PayClass</a>
-			<a href="#s2">概述</a>
-			<a href="#s3">種類</a>
-			<a href="#s4">主流支付</a>
-			<a href="#final">反饋</a>
-			<a href="#footer">關於</a>
+<body data-target="#navbar-spy" data-spy="scroll" style="background-image: url('images/bg_home0.jpg');"> 
+	<!--頁首區塊---------->
+		<!--導覽列-->
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" id="navbar-spy">
+			<!--網站LOGO--><a class="navbar-brand" href="index.html"><img src="images/Logo.svg" height="40"/></a>
+			<!--縮小時漢堡鈕-->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+				<span class="navbar-toggler-icon" style="width:20px;height:30px;"></span>
+			</button>
+			<!--導覽列內容-->
+			<div class="collapse navbar-collapse justify-content-between" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="#home">首頁</a></li>
+					<li class="nav-item"><a class="nav-link" href="#section2">今明預報</a></li>
+					<li class="nav-item"><a class="nav-link" href="#section3">一週天氣</a></li>
+					<li class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#Feedback">意見回饋</a></li>
+					<li class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#AboutUS">關於</a></li>
+				</ul>
+				<div>
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link" href="" data-toggle="modal" data-target="#Background"><i class="fas fa-paint-roller"></i> 背景</a></li>
+					</ul>
+				</div>
+			</div>
 		</nav>
-	</header>
-	
+
+	<!--內容區塊---------->
 	<content>
-		<!--首頁區塊 -->
-		<section id="home" class="flex">
-			<div class="flex flex_COL">
-				<div id="Title">
-					<span class="mainTitle">Some Knowledge About</span><br/>
-					<span class="subTitle">"Mobile Payment"</span><br/>
-				</div>
-				<span class="thrTitle">行 動 支 付 的 這 些 那 些</span>
-				<!--getStart下滑鈕 -->
-				<a href="#s2"><span id="getStart">Get Start</span></a>
-			</div>
-		</section>
-
-		<!--第二區 -->
-		<section id="s2" class="flex">
-			<div class="flex flex_COL">
-				<h1><ruby>概述行動支付<rt>Overview Mobile Payment</rt></ruby></h1>
-				<p class="innerText">　　行動支付是指使用行動裝置進行付款的服務。在不需使用現金、支票或信用卡的情況下，消費者可使用行動裝置支付各項服務或數位及實體商品的費用。雖然使用非實體貨幣系統的概念已存在許久，但支援此系統的科技直到近期才開始普及。在台灣，主要的行動支付的方式大致上可分為掃碼型（QR Code）和感應型（NFC）；而行動支付的種類又可以細分為「行動支付」、「第三方支付」、「電子支付」及介於行動支付邊緣的「電子票證」。</p>
-				<img src="images/Type_of_Payment.png" height="300"/>
-			</div>
-		</section>
-
-		<!--第三區 -->
-		<section id="s3" class="flex">
-			<div class="flex flex_COL">
-				<h1><ruby>國際三大Pay<rt>International 3 Major Pay</rt></ruby></h1>
-				<div class="flex">
-					<table id="PayType" width="53%">
-						<tr>
-							<th scope="col" width="50"></th>
-							<th scope="col" width="200">Apple Pay</th>
-							<th scope="col" width="200">Samsung Pay</th>
-							<th scope="col" width="200">Google Pay</th>
-						</tr>
-						<tr><td scope="row">支援卡別</td><td>VISA、Master、JCB<br/>信用卡、簽帳金融卡</td><td>VISA、Master<br/>信用卡、簽帳金融卡</td><td>VISA、Master<br/>信用卡、簽帳金融卡</td></tr>
-						<tr><td scope="row">支援功能</td><td>NFC感應</td><td>NFC感應、MST磁條</td><td>NFC感應</td></tr>
-					</table>
-					<img src="images/Three_Major_Pay.png" usemap="#image-map" style="width: 25vw;"/>
-					<map name="image-map">
-						<area title="GooglePay" href="https://pay.google.com/intl/zh_tw/about/" shape="circle" coords="273,316,185" target="_blank" alt="GooglePay">
-						<area title="ApplePay" href="https://www.apple.com/tw/apple-pay/" shape="circle" coords="729,316,185" target="_blank" alt="ApplePay">
-						<area title="SamsungPay" href="https://www.samsung.com/tw/samsungpay/" shape="circle" coords="501,711,185" target="_blank" alt="SamsungPay">
-					</map>
-				</div>
-				<!--3-1區下滑鈕 -->
-				<br/><a href="#s3_1"><span id="getContinue">More</span></a>
-			</div>
-		</section>
-
-		<!--第三之一區 -->
-		<section id="s3_1" class="flex">
-			<div class="flex flex_COL">
-				<h1><ruby>其餘類型<rt>The other types</rt></ruby></h1>
-				<p class="innerText">　　廣義而言，行動支付是指「利用手機進行付款」這件事；但狹義來說，行動支付只是把手機作為信用卡的載具，也就是說，手機就是信用卡。店家如果要透過手機行動支付收到你的付款，就必須具備感應式刷卡機。目前非感應式的行動支付方式，也有下方幾種型態。<br/>　</p>
-				<table id="PayType" width="80%">
-					<tr>
-						<th scope="col" width="100"></th>
-						<th scope="col" width="300">第三方支付</th>
-						<th scope="col" width="300">電子支付</th>
-						<th scope="col" width="300">電子票證</th>
-					</tr>
-					<tr><td scope="row">主要功能</td><td>1. 只能從事代收代付。</td><td>1. 可儲值、轉帳、代收代付。<br/>2. 儲值金額上限為 NT$ 5萬。</td><td>1. 可儲值。<br/>2. 儲值金額上限為 NT$ 1萬。</td></tr>
-					<tr><td scope="row">市場代表</td><td>Line Pay、Pi錢包、Gomaji Pay、支付連(PC home)、Yahoo奇摩輕鬆付等6300餘家。</td><td>Line Pay 一卡通帳戶、街口支付、橘子支付、國際連、歐付寶、智付寶及銀行等。</td><td>悠遊卡、一卡通、愛金卡(iCash)、HappyCash有錢卡等。</td></tr>
-				</table>
-				<!--參考文獻 -->
-				<div class="reference">
-					<a href="https://dahetalk.com/2018/08/19/【圖解】台灣行動支付大比拼%EF%BC%9Aline-pay、街口支付、apple-pay/" target="_blank">　參考文獻[1]</a>
-					<a href="https://agirls.aotter.net/post/54383" target="_blank">　參考文獻[2]</a>
-				</div>
-			</div>
-		</section>
-		
-		<!--第四區 -->
-		<section id="s4" class="flex">
-			<div class="flex flex_COL">
-				<h1>主流支付工具</h1>
-				<div class="flex">
-					<!--LINE PAY 影片區塊 -->
-					<div class="flex flex_COL vsPay LINE">
-						<a href="https://www.i-pass.com.tw/IPS/Event/LINEPay-iPASS/" target="_blank"><img src="images/LINEPAY.svg" height="60px"/></a><br/>
-						<video style="width: 35vw;" src="videos/LINEPAY.mp4" type="video/mp4" controls></video>
-					</div>
-					<!--街口支付 影片區塊 -->
-					<div class="flex flex_COL vsPay JKO">
-						<a href="https://www.jkos.com/" target="_blank"><img src="images/JKOPAY.png" height="60px"/></a><br/>
-						<video style="width: 35vw;" src="videos/JKOPAY.mp4" type="video/mp4" controls></video>
+		<section id="home" class="container-fluid">
+			<div class="row h-100 justify-content-center">
+				<div class="col-10 col-lg-3 align-self-center">
+					<div class="row justify-content-center">
+						<div>
+							<select id="selectCity" class="selectpicker show-menu-arrow" data-width="fit"></select><br/>
+							<div class="weatherInfo"><span id="currentWx">陰時多雲短暫陣雨</span></div>
+							<div id="currentTemp">17.40°C</div>
+							<div class="weatherInfo">
+								<i class="fas fa-umbrella" title="降雨機率"></i> <span id="currentPoP">50%</span>　
+								<i class="fas fa-tint" title="濕度"></i> <span id="currentHUMD">75%</span>　
+								<i class="fas fa-flask" title="24小時累積雨量"></i> <span id="current24R">0mm</span>　
+							</div>
+						</div>
 					</div>
 				</div>
-				<!--4-1區下滑鈕 -->
-				<br/><a href="#s4_1"><span id="getContinue">More</span></a>
-			</div>
-		</section>
-
-		<!--第四之一區 -->
-		<section id="s4_1" class="flex">
-			<div class="flex flex_COL">
-				<a href="https://www.taiwanpay.com.tw/" target="_blank"><img src="images/TWPAY.png" height="100px"/></a><br/>
-				<iframe style="width: 50vw; height: 28.125vw;" src="https://www.youtube-nocookie.com/embed/XeGrRbcHgME?controls=1" frameborder="0" allowfullscreen></iframe>
-			</div>
-		</section>
-
-		<!--問卷區 -->
-		<section id="final" class="flex">
-			<div class="flex flex_COL">
-				<h1>意見反饋</h1><br/>
-				<form action="javascript:alert('感謝您的回饋！\n（不會真的送出）');">
-					<fieldset name="body">
-						<label for="userName">姓名：</label><input type="text" name="subject" id="userName" placeholder="王大明" size="10" required/>
-						<label>　性別：</label>
-						<input type="radio" name="userGender" value="male" id="male"/><label for="male">男</label>
-						<input type="radio" name="userGender" value="female" id="female" /><label for="female">女</label>
-						<input type="radio" name="userGender" value="private" id="private" checked/><label for="private">不公開</label><br/>
-						<label for="userMail">信箱：</label><input type="email" id="usermail" placeholder="A123@abc.tw" size="40" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z0-9.-]+" required/><br/>
-						<br/><hr style="border: thin dotted #CCC;">
-						<label >本網站是否讓您更認識行動支付？</label>
-						<input type="radio" name="question1" value="yes" id="yes"/><label for="yes">有</label>
-						<input type="radio" name="question1" value="normal" id="normal" checked/><label for="normal">普通</label>
-						<input type="radio" name="question1" value="no" id="no" /><label for="no">沒有</label><br/>
-						<label for="anyfb">建議：</label><textarea name="anyfb" id="anyfb" cols="40" rows="3"></textarea>
-					</fieldset>
-					<div style="text-align: center;">
-						<input type="reset" value="清除"> <input type="submit" value="送出">
+				<div class="col-10 col-lg-5 offset-lg-1 align-self-center">
+					<div id="threeHours" class="tableRound table-responsive">
+						<table class="text-nowrap">
+							<tr id="threeHoursDayTitle" align="left"><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th></tr>
+							<tr id="threeHoursHourTitle"><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th></tr>
+							<tr id="threeHours01"><td>Wx</td><td>Wx</td><td>Wx</td><td>Wx</td><td>Wx</td><td>Wx</td><td>Wx</td></tr>
+							<tr id="threeHours02"><td>Wx</td><td>Wx</td><td>Wx</td><td>Wx</td><td>Wx</td><td>Wx</td><td>Wx</td></tr>
+						</table>
 					</div>
-				</form>
+				</div>
+			</div>
+		</section>
+
+		<section id="section2" class="container-fluid">
+			<div class="row h-100 justify-content-center">
+				<div class="col-12 col-md-8 col-lg-6 align-self-center">
+					<h1>今明預報</h1>
+					<div id="twoDaysTimes" class="tableRound table-responsive">
+						<table class="text-nowrap">
+							<tr id="twoDaysTimesTitle"><th id="twoDaysCity"></th><th>氣溫</th><th>天氣現象</th><th>舒適度</th><th>降雨機率</th></tr>
+							<tr id="twoDaysTimes01"></tr><tr id="twoDaysTimes02"></tr><tr id="twoDaysTimes03"></tr><tr id="twoDaysTimes04"><tr id="twoDaysTimes05"></tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="section3" class="container-fluid">
+			<div class="row h-100 justify-content-center">
+				<div class="col-12 col-lg-8 align-self-center">
+					<h1>一週天氣</h1>
+					<div id="weekWeather" class="tableRound table-responsive">
+						<table class="text-nowrap">
+							<tr id="weekWeatherTitle"><th id="weekCity"></th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th><th>MM/DD</th></tr>
+							<tr id="weekWeatherDay"></tr><tr id="weekWeatherNight"></tr>
+						</table>
+					</div>
+				</div>
 			</div>
 		</section>
 	</content>
-
-	<!--頁尾 -->
-	<footer id="footer" class="flex">
-		<div class="flex flex_COL">
-			<h1>About</h1>
-			<div class="flex aboutMe">
-				<img src="images/editor.jpg" style="width: 50px; border-radius: 50%;"/>
-				<span>　B10723007　林子佑</span>
-			</div>
-			<span class="ftitle">PayClass Web Copyright 2019 &copy; All Rights Reserved.<br/>本網頁建議使用 Chrome、Firefox、Edge 或 Safari 瀏覽器。</span>
-		</div>
-		
-	</footer>
 	
+	<!--頁尾區塊---------->
+	<footer id="footer" class="container-fluid">
+		<span>&copy; 2019 HAPPY weather</span>
+	</footer>
+
+	<!-- Modal 區塊---------->
+	<!-- 回饋 -->
+	<div class="modal" id="Feedback" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="modal-header">
+						<h4 class="modal-title" id="exampleModalLongTitle">意見回饋</h4>
+					</div>
+					<form action="javascript:alert('感謝您的回饋！\n（不會真的送出）');">
+						<div class="form-group">
+							<label for="name">姓名：</label>
+							<input type="text" class="form-control" id="name" required>
+						</div>
+						<div class="form-group">
+							<label for="email">Email：</label>
+							<input type="email" class="form-control" id="email" placeholder="abc123@weather.com" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z0-9.-]+" required>
+						</div>
+						<div class="form-group">
+							<label for="textarea">其他建議：</label>
+							<textarea class="form-control" id="textarea" required></textarea>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+							<button type="submit" class="btn btn-primary">送出</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 關於 -->
+	<div class="modal" id="AboutUS" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLongTitle">關於我們</h4>
+				</div>
+				<div class="modal-body">
+					<div class="text-justify">
+					　　本網站僅作學術使用，本站使用之天氣內容來源係為<a href="https://opendata.cwb.gov.tw" target="_blank">交通部中央氣象局-開放資料平臺</a>之氣象資料。所有氣象資料與天氣狀況圖示之所有權皆屬<a href="https://www.cwb.gov.tw/" target="_blank">中央氣象局</a>。
+					</div>
+					<br/><hr>
+					<div class="text-center text-muted">
+						<h5>參與製作</h5>
+						<span>林子佑　江憶甄　賴有達　黃一文</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 更改背景 -->
+	<div class="modal" id="Background" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="exampleModalLongTitle">背景選擇</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row justify-content-center">
+						<div class="col-6 col-md-4"><a href="javascript:void(0)" onclick="changeBG(0)"><img src="images/bg_home0.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:void(0)" onclick="changeBG(1)"><img src="images/bg_home1.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:void(0)" onclick="changeBG(2)"><img src="images/bg_home2.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:void(0)" onclick="changeBG(3)"><img src="images/bg_home3.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:void(0)" onclick="changeBG(4)"><img src="images/bg_home4.jpg"/></a></div>
+						<div class="col-6 col-md-4"><a href="javascript:void(0)" onclick="changeBG(5)"><img src="images/bg_home5.jpg"/></a></div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!--避免本頁面過冗長，以下三個JS檔獨立出來---------->
+	<script src="js/weather/weatherObj.js"></script> <!--天氣物件變數-->
+	<script src="js/weather/weatherGetJSON.js"></script> <!--天氣資料取得函式-->
+	<script src="js/weather/changeWeather.js"></script> <!--天氣資料更改函式-->
+	
+	<!--本頁面JavaScript、JQuery---------->
 	<script>
+		//html 載入時執行
+		$(function(){	
+			$.ajaxSettings.async = false;
+			getTwoDaysData(); //取得36小時天氣資料
+			getCurrentData(); //取得局屬測站天氣資料及自動測站天氣資料
+			getWeekData(); //取得一週天氣資料
+			getThreeHoursData(); //取得逐三小時預報資料
+			//--------------------載入後改變初始選取資料--------------------
+			editWeatherData($('#selectCity').val("臺北市").selectpicker('refresh').val());
+		});
+
+		//建立下拉選單
+		Object.keys(weatherObj).map(function(cityName){
+			$('#selectCity').append('<option value="'+ cityName  + '">' + cityName + '</option>');
+		})
+
+		//下拉選單改變時
+		$('#selectCity').on('changed.bs.select', function() {
+			editWeatherData(this.value);
+		});
+
+		//更改今明預報及目前天氣function
+		var editWeatherData = function (cityName){ 
+			changeCurrent(cityName); //改目前天氣
+			changeTwoDays(cityName); //改今明預報
+			changeWeek(cityName); //改一週預報
+			changeThreeHours(cityName); //改逐三小時
+		};
+
 		//超連結切換頁面時會用滑的，而不是直接跳過去
 		$("a").on('click', function() {
 			var hash = this.hash;// 存超連結hash值
@@ -173,10 +236,10 @@
 			$('html, body').animate({ scrollTop: $(hash).offset().top }, 800);
 		});
 
-		//把影像地圖套用rwdImageMaps的funtcion避免瀏覽器縮放導致影像地圖跑位
-		$(document).ready(function(e) {
-			$('img[usemap]').rwdImageMaps();
-		});
+		//改變背景圖
+		var changeBG = function (val){
+			$('body').css("background-image","url('images/bg_home" + val + ".jpg')");
+		}
 	</script>
 </body>
 </html>
